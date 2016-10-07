@@ -7,33 +7,31 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        loadInitialData()
+        
+        // Load initial query
+        let parameters: Parameters = [
+            "term": "ethiopian",
+            "latitude": 51.5032520,
+            "longitude": -0.1278990]
+        
+        RequestFactory.request(forType: .Search)?.perform(withParameters: parameters, andCompletion: { (success) in
+            if success {
+                print("\nSuccess\n")
+            } else {
+                print("\nOops\n")
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func loadInitialData() {
-        if (!YelpAPIManager.sharedInstance.hasOAuthToken()) {
-            YelpAPIManager.sharedInstance.startOAuth2Login(withCompletionHandler: { (success) in
-                if success {
-                    print("\nSuccess\n")
-                } else {
-                    print("\nError\n")
-                }
-            })
-        } else {
-            // Token found
-            print("Token found")
-        }
     }
     
 
