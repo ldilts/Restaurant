@@ -9,12 +9,15 @@
 /* Begin PBXBuildFile section */
 		86288E751DA7D8F2003A87D2 /* RequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86288E741DA7D8F2003A87D2 /* RequestFactory.swift */; };
 		86288E771DA7F1A0003A87D2 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86288E761DA7F1A0003A87D2 /* Business.swift */; };
+		8669B36A1DA81A27005CF1A4 /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8669B3691DA81A27005CF1A4 /* Coordinates.swift */; };
+		8669B36C1DA820C3005CF1A4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8669B36B1DA820C3005CF1A4 /* Location.swift */; };
+		8669B36E1DA8231B005CF1A4 /* RestaurantsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8669B36D1DA8231B005CF1A4 /* RestaurantsTableViewController.swift */; };
+		8669B3701DA82A38005CF1A4 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8669B36F1DA82A38005CF1A4 /* RestaurantDetailViewController.swift */; };
 		86A639B61DA6F042009046ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A639B51DA6F042009046ED /* AppDelegate.swift */; };
 		86A639BB1DA6F042009046ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86A639B91DA6F042009046ED /* Main.storyboard */; };
 		86A639BE1DA6F042009046ED /* Restaurants.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86A639BC1DA6F042009046ED /* Restaurants.xcdatamodeld */; };
 		86A639C01DA6F042009046ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86A639BF1DA6F042009046ED /* Assets.xcassets */; };
 		86A639C31DA6F042009046ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86A639C11DA6F042009046ED /* LaunchScreen.storyboard */; };
-		86A639D01DA6F117009046ED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A639CF1DA6F117009046ED /* ViewController.swift */; };
 		86A639D21DA6FB88009046ED /* YelpAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A639D11DA6FB88009046ED /* YelpAPIManager.swift */; };
 		9A489B12541CD538A99A7433 /* Pods_Restaurants.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B978821A3C430AB5E984174 /* Pods_Restaurants.framework */; };
 /* End PBXBuildFile section */
@@ -23,6 +26,10 @@
 		3B978821A3C430AB5E984174 /* Pods_Restaurants.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Restaurants.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86288E741DA7D8F2003A87D2 /* RequestFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestFactory.swift; path = Model/RequestFactory.swift; sourceTree = "<group>"; };
 		86288E761DA7F1A0003A87D2 /* Business.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Business.swift; path = Model/Business.swift; sourceTree = "<group>"; };
+		8669B3691DA81A27005CF1A4 /* Coordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Coordinates.swift; path = Model/Coordinates.swift; sourceTree = "<group>"; };
+		8669B36B1DA820C3005CF1A4 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Location.swift; path = Model/Location.swift; sourceTree = "<group>"; };
+		8669B36D1DA8231B005CF1A4 /* RestaurantsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RestaurantsTableViewController.swift; path = Controller/RestaurantsTableViewController.swift; sourceTree = "<group>"; };
+		8669B36F1DA82A38005CF1A4 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RestaurantDetailViewController.swift; path = Controller/RestaurantDetailViewController.swift; sourceTree = "<group>"; };
 		86A639B21DA6F042009046ED /* Restaurants.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Restaurants.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86A639B51DA6F042009046ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86A639BA1DA6F042009046ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -30,7 +37,6 @@
 		86A639BF1DA6F042009046ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86A639C21DA6F042009046ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86A639C41DA6F042009046ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		86A639CF1DA6F117009046ED /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = Controller/ViewController.swift; sourceTree = "<group>"; };
 		86A639D11DA6FB88009046ED /* YelpAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpAPIManager.swift; sourceTree = "<group>"; };
 		86A639D81DA71F3D009046ED /* Restaurants-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Restaurants-Bridging-Header.h"; sourceTree = "<group>"; };
 		86A639DC1DA73510009046ED /* Restaurants.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Restaurants.entitlements; sourceTree = "<group>"; };
@@ -116,6 +122,8 @@
 			children = (
 				86288E741DA7D8F2003A87D2 /* RequestFactory.swift */,
 				86288E761DA7F1A0003A87D2 /* Business.swift */,
+				8669B3691DA81A27005CF1A4 /* Coordinates.swift */,
+				8669B36B1DA820C3005CF1A4 /* Location.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -123,7 +131,8 @@
 		86A639CE1DA6F0A3009046ED /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				86A639CF1DA6F117009046ED /* ViewController.swift */,
+				8669B36D1DA8231B005CF1A4 /* RestaurantsTableViewController.swift */,
+				8669B36F1DA82A38005CF1A4 /* RestaurantDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -266,8 +275,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86A639D01DA6F117009046ED /* ViewController.swift in Sources */,
 				86288E751DA7D8F2003A87D2 /* RequestFactory.swift in Sources */,
+				8669B3701DA82A38005CF1A4 /* RestaurantDetailViewController.swift in Sources */,
+				8669B36E1DA8231B005CF1A4 /* RestaurantsTableViewController.swift in Sources */,
+				8669B36C1DA820C3005CF1A4 /* Location.swift in Sources */,
+				8669B36A1DA81A27005CF1A4 /* Coordinates.swift in Sources */,
 				86A639B61DA6F042009046ED /* AppDelegate.swift in Sources */,
 				86288E771DA7F1A0003A87D2 /* Business.swift in Sources */,
 				86A639D21DA6FB88009046ED /* YelpAPIManager.swift in Sources */,
@@ -315,6 +327,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -364,6 +377,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -392,6 +406,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F1392EECCF131235CE5F00EB /* Pods-Restaurants.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Restaurants/Restaurants.entitlements;
@@ -410,6 +425,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B31AFBD15834B7E8F0E53845 /* Pods-Restaurants.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Restaurants/Restaurants.entitlements;

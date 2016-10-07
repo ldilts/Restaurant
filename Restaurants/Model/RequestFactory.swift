@@ -14,11 +14,11 @@ import SwiftyJSON
 
 @objc protocol Request {
     func perform(withParameters parameters: Parameters?,
-                       andCompletion completion: @escaping (_ result: Bool) -> Void)
+                       andCompletion completion: @escaping (_ result: [Any]?) -> Void)
 }
 
 class SearchRequest: Request {
-    func perform(withParameters parameters: Parameters?, andCompletion completion: @escaping (Bool) -> Void) {
+    func perform(withParameters parameters: Parameters?, andCompletion completion: @escaping ([Any]?) -> Void) {
         
         guard let foo: Parameters = parameters else {
             NSLog("Error: Parameters are required for search")
@@ -30,7 +30,7 @@ class SearchRequest: Request {
             guard response.result.isSuccess else {
                 print("Error calling GET on /businesses/search")
                 print(response.result.error!)
-                completion(false)
+                completion(nil)
                 return
             }
             
@@ -38,20 +38,26 @@ class SearchRequest: Request {
                 let json = JSON(value)
                 
                 if let businesses = json["businesses"].array {
-                    // TODO: Instantiate businesses from JSON
-                    completion(true)
+                    
+                    var result: [Business] = [Business]()
+                    
+                    for business in businesses {
+                        result.append(Business(withJSON: business))
+                    }
+                    
+                    completion(result)
                     return
                 }
             }
                                             
-            completion(false)
+            completion(nil)
         }
     }
 }
 
 class BusinessRequest: Request {
-    func perform(withParameters parameters: [String : Any]?, andCompletion completion: @escaping (Bool) -> Void) {
-        completion(false) // TODO: Implement business request
+    func perform(withParameters parameters: [String : Any]?, andCompletion completion: @escaping ([Any]?) -> Void) {
+        completion(nil) // TODO: Implement business request
     }
 }
 

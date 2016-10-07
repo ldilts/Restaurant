@@ -1,32 +1,25 @@
 //
-//  ViewController.swift
+//  RestaurantDetailViewController.swift
 //  Restaurants
 //
-//  Created by Lucas Dilts on 2016-10-06.
+//  Created by Lucas Dilts on 2016-10-07.
 //  Copyright © 2016 Lucas Dilts. All rights reserved.
 //
 
 import UIKit
-import Alamofire
 
-class ViewController: UIViewController {
+class RestaurantDetailViewController: UIViewController {
+    
+    var business: Business!
 
+    @IBOutlet weak var nameLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Load initial query
-        let parameters: Parameters = [
-            "term": "ethiopian",
-            "latitude": 51.5032520,
-            "longitude": -0.1278990]
-        
-        RequestFactory.request(forType: .Search)?.perform(withParameters: parameters, andCompletion: { (success) in
-            if success {
-                print("\nSuccess\n")
-            } else {
-                print("\nOops\n")
-            }
-        })
+
+        if let business = self.business {
+            self.nameLabel.text = business.name ?? ""
+        }
     }
 
     override func didReceiveMemoryWarning() {
