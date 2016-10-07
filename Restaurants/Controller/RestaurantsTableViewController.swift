@@ -9,11 +9,14 @@
 import UIKit
 import Alamofire
 
-class RestaurantsTableViewController: UITableViewController {
+class RestaurantsTableViewController: UITableViewController, UISearchResultsUpdating {
     
     var businesses: [Business] = [Business]()
     var selectedBusiness: Business?
 //    var refreshControl: UIRefreshControl!
+    
+    var suggestions: [Business] = [Business]()
+    var resultSearchController = UISearchController()
     
     // MARK: - Life cycle
 
@@ -25,6 +28,14 @@ class RestaurantsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        self.resultSearchController = UISearchController(searchResultsController: nil)
+        self.resultSearchController.searchResultsUpdater = self
+        self.resultSearchController.dimsBackgroundDuringPresentation = false
+        self.resultSearchController.searchBar.sizeToFit()
+        
+        self.tableView.tableHeaderView = self.resultSearchController.searchBar
+//        self.tableView.reloadData()
         
         self.refreshControl?.addTarget(self, action: #selector(RestaurantsTableViewController.refresh(_:)), for: .valueChanged)
         
@@ -44,13 +55,23 @@ class RestaurantsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.businesses.count
+        if self.resultSearchController.isActive {
+            return suggestions.count
+        } else {
+            return self.businesses.count
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "restaurantCell", for: indexPath)
         
-        cell.textLabel?.text = businesses[indexPath.row].name!
+        if self.resultSearchController.isActive {
+            if indexPath.row < self.suggestions.count {
+                cell.textLabel?.text = suggestions[indexPath.row].name!
+            }
+        } else {
+            cell.textLabel?.text = businesses[indexPath.row].name!
+        }
 
         return cell
     }
@@ -58,7 +79,8 @@ class RestaurantsTableViewController: UITableViewController {
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedBusiness = self.businesses[indexPath.row]
+        self.selectedBusiness = self.resultSearchController.isActive ? self.suggestions[indexPath.row]
+            : self.businesses[indexPath.row]
         self.performSegue(withIdentifier: "businessDetailSegue", sender: self)
     }
 
@@ -97,6 +119,33 @@ class RestaurantsTableViewController: UITableViewController {
     }
     */
     
+    // MARK: - Search results updating
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        self.suggestions.removeAll(keepingCapacity: false)
+        
+        let parameters: Parameters = [
+            "text": searchController.searchBar.text!,
+            "latitude": 51.5032520,
+            "longitude": -0.1278990]
+        
+        RequestFactory.request(forType: .Autocomplete)?
+            .perform(withParameters: parameters,
+                     andID: nil,
+                     andCompletion: { (result) in
+                        
+                        if (result != nil) {
+                            if let businesses = result as? [Business] {
+                                self.suggestions = businesses
+                                
+                                self.tableView.reloadData()
+                            }
+                        }
+            
+        })
+        
+        
+    }
     
     
     // MARK: - Actions
@@ -140,6 +189,8 @@ class RestaurantsTableViewController: UITableViewController {
             
             self.selectedBusiness = nil
         }
+        
+        self.resultSearchController.dismiss(animated: false, completion: nil)
     }
 
 }

@@ -99,10 +99,53 @@ class BusinessRequest: Request {
     }
 }
 
+class AutocompleteRequest: Request {
+    func perform(withParameters parameters: Parameters?,
+                 andID id: String?,
+                 andCompletion completion: @escaping ([Any]?) -> Void) {
+        
+        guard let _: Parameters = parameters else {
+            NSLog("Error: Parameters are required for search")
+            return
+        }
+        
+        Alamofire.request(Router.autocomplete(parameters: parameters!))
+            .responseJSON { (response) in
+            
+            guard response.result.isSuccess else {
+                print("Error calling GET on /autocomplete")
+                print(response.result.error!)
+                completion(nil)
+                return
+            }
+            
+            if let value = response.result.value {
+                let json = JSON(value)
+                
+                if let businesses = json["businesses"].array {
+                    
+                    var result: [Business] = [Business]()
+                    
+                    for business in businesses {
+                        result.append(Business(withJSON: business))
+                    }
+                    
+                    completion(result)
+                    return
+                }
+            }
+                
+            completion(nil)
+        }
+        
+    }
+}
+
 enum RequestType: Int {
     case Search = 1
-    case Reviews = 2
+    case Reviews
     case Business
+    case Autocomplete
 }
 
 class RequestFactory {
@@ -111,6 +154,7 @@ class RequestFactory {
         switch type {
         case .Search: return SearchRequest()
         case .Reviews: return ReviewsRequest()
+        case .Autocomplete: return AutocompleteRequest()
         default: return nil
         }
     }
@@ -123,13 +167,14 @@ enum Router: URLRequestConvertible {
     // TODO: Add offset parameter
     case search(parameters: Parameters, page: Int)
     case reviews(id: String)
+    case autocomplete(parameters: Parameters)
     
     static let baseURLString = "https://api.yelp.com/v3"
     static let perPage = 10
     
     var method: HTTPMethod {
         switch self {
-        case .search, .reviews:
+        case .search, .reviews, .autocomplete:
             return .get
         }
     }
@@ -138,6 +183,7 @@ enum Router: URLRequestConvertible {
         switch self {
         case .search: return "/businesses/search"
         case .reviews(let id): return "/businesses/\(id)/reviews"
+        case .autocomplete: return "/autocomplete"
         }
     }
     
@@ -150,6 +196,8 @@ enum Router: URLRequestConvertible {
         
         switch self {
         case .search(let parameters, _):
+            urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+        case .autocomplete(let parameters):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
         default: break
         }

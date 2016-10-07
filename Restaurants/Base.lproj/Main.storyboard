@@ -34,10 +34,19 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
                     <connections>
+                        <outlet property="searchDisplayController" destination="HTr-Pl-CDS" id="EcP-Fn-PHU"/>
                         <segue destination="97p-7q-udt" kind="show" identifier="businessDetailSegue" id="Ht7-Mj-NCH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ma9-VC-pyA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="HTr-Pl-CDS">
+                    <connections>
+                        <outlet property="delegate" destination="9lx-d5-mmQ" id="bBD-zv-xgK"/>
+                        <outlet property="searchContentsController" destination="9lx-d5-mmQ" id="H3w-Oh-QIY"/>
+                        <outlet property="searchResultsDataSource" destination="9lx-d5-mmQ" id="ute-uH-7H6"/>
+                        <outlet property="searchResultsDelegate" destination="9lx-d5-mmQ" id="jFZ-Qj-fxl"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1808.8" y="136.28185907046478"/>
         </scene>
