@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         }
         
+        // TODO: Check if token is valid
+        
         return true
     }
 

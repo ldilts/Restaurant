@@ -14,18 +14,19 @@ import SwiftyJSON
 
 @objc protocol Request {
     func perform(withParameters parameters: Parameters?,
-                       andCompletion completion: @escaping (_ result: [Any]?) -> Void)
+                 andID id: String?,
+                 andCompletion completion: @escaping (_ result: [Any]?) -> Void)
 }
 
 class SearchRequest: Request {
-    func perform(withParameters parameters: Parameters?, andCompletion completion: @escaping ([Any]?) -> Void) {
+    func perform(withParameters parameters: Parameters?, andID id: String?, andCompletion completion: @escaping ([Any]?) -> Void) {
         
-        guard let foo: Parameters = parameters else {
+        guard let _: Parameters = parameters else {
             NSLog("Error: Parameters are required for search")
             return
         }
         
-        Alamofire.request(Router.search(parameters: foo,
+        Alamofire.request(Router.search(parameters: parameters!,
                                         page: 1)).responseJSON { (response) in
             guard response.result.isSuccess else {
                 print("Error calling GET on /businesses/search")
@@ -55,14 +56,52 @@ class SearchRequest: Request {
     }
 }
 
+class ReviewsRequest: Request {
+    func perform(withParameters parameters: Parameters?, andID id: String?, andCompletion completion: @escaping ([Any]?) -> Void) {
+        
+        guard let _ : String = id else {
+            NSLog("Error: ID is required for review request")
+            return
+        }
+        
+        Alamofire.request(Router.reviews(id: id!)).responseJSON { (response) in
+            guard response.result.isSuccess else {
+                print("Error calling GET on /businesses/{id}/reviews")
+                print(response.result.error!)
+                completion(nil)
+                return
+            }
+            
+            if let value = response.result.value {
+                let json = JSON(value)
+                
+                if let reviews = json["reviews"].array {
+                    
+                    var result: [Review] = [Review]()
+                    
+                    for review in reviews {
+                        result.append(Review(withJSON: review))
+                    }
+                    
+                    completion(result)
+                    return
+                }
+            }
+            
+            completion(nil)
+        }
+    }
+}
+
 class BusinessRequest: Request {
-    func perform(withParameters parameters: [String : Any]?, andCompletion completion: @escaping ([Any]?) -> Void) {
+    func perform(withParameters parameters: [String : Any]?, andID: String?, andCompletion completion: @escaping ([Any]?) -> Void) {
         completion(nil) // TODO: Implement business request
     }
 }
 
 enum RequestType: Int {
     case Search = 1
+    case Reviews = 2
     case Business
 }
 
@@ -71,6 +110,7 @@ class RequestFactory {
         
         switch type {
         case .Search: return SearchRequest()
+        case .Reviews: return ReviewsRequest()
         default: return nil
         }
     }
@@ -82,21 +122,22 @@ enum Router: URLRequestConvertible {
     
     // TODO: Add offset parameter
     case search(parameters: Parameters, page: Int)
+    case reviews(id: String)
     
     static let baseURLString = "https://api.yelp.com/v3"
     static let perPage = 10
     
     var method: HTTPMethod {
         switch self {
-        case .search:
+        case .search, .reviews:
             return .get
         }
     }
     
     var path: String {
         switch self {
-        case .search:
-            return "/businesses/search"
+        case .search: return "/businesses/search"
+        case .reviews(let id): return "/businesses/\(id)/reviews"
         }
     }
     

@@ -13,6 +13,7 @@
 		8669B36C1DA820C3005CF1A4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8669B36B1DA820C3005CF1A4 /* Location.swift */; };
 		8669B36E1DA8231B005CF1A4 /* RestaurantsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8669B36D1DA8231B005CF1A4 /* RestaurantsTableViewController.swift */; };
 		8669B3701DA82A38005CF1A4 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8669B36F1DA82A38005CF1A4 /* RestaurantDetailViewController.swift */; };
+		8669B3721DA83140005CF1A4 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8669B3711DA83140005CF1A4 /* Review.swift */; };
 		86A639B61DA6F042009046ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A639B51DA6F042009046ED /* AppDelegate.swift */; };
 		86A639BB1DA6F042009046ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86A639B91DA6F042009046ED /* Main.storyboard */; };
 		86A639BE1DA6F042009046ED /* Restaurants.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86A639BC1DA6F042009046ED /* Restaurants.xcdatamodeld */; };
@@ -30,6 +31,7 @@
 		8669B36B1DA820C3005CF1A4 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Location.swift; path = Model/Location.swift; sourceTree = "<group>"; };
 		8669B36D1DA8231B005CF1A4 /* RestaurantsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RestaurantsTableViewController.swift; path = Controller/RestaurantsTableViewController.swift; sourceTree = "<group>"; };
 		8669B36F1DA82A38005CF1A4 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RestaurantDetailViewController.swift; path = Controller/RestaurantDetailViewController.swift; sourceTree = "<group>"; };
+		8669B3711DA83140005CF1A4 /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Review.swift; path = Model/Review.swift; sourceTree = "<group>"; };
 		86A639B21DA6F042009046ED /* Restaurants.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Restaurants.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86A639B51DA6F042009046ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86A639BA1DA6F042009046ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				86288E761DA7F1A0003A87D2 /* Business.swift */,
 				8669B3691DA81A27005CF1A4 /* Coordinates.swift */,
 				8669B36B1DA820C3005CF1A4 /* Location.swift */,
+				8669B3711DA83140005CF1A4 /* Review.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				8669B36E1DA8231B005CF1A4 /* RestaurantsTableViewController.swift in Sources */,
 				8669B36C1DA820C3005CF1A4 /* Location.swift in Sources */,
 				8669B36A1DA81A27005CF1A4 /* Coordinates.swift in Sources */,
+				8669B3721DA83140005CF1A4 /* Review.swift in Sources */,
 				86A639B61DA6F042009046ED /* AppDelegate.swift in Sources */,
 				86288E771DA7F1A0003A87D2 /* Business.swift in Sources */,
 				86A639D21DA6FB88009046ED /* YelpAPIManager.swift in Sources */,

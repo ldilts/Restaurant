@@ -26,7 +26,6 @@ class RestaurantsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-//        self.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl?.addTarget(self, action: #selector(RestaurantsTableViewController.refresh(_:)), for: .valueChanged)
         
         self.refresh(sender: self)
@@ -112,18 +111,14 @@ class RestaurantsTableViewController: UITableViewController {
             "longitude": -0.1278990]
         
         RequestFactory.request(forType: .Search)?
-            .perform(withParameters: parameters, andCompletion: { (result) in
+            .perform(withParameters: parameters, andID: nil, andCompletion: { (result) in
                 
                 if (result != nil) {
-                    print("\nSuccess\n")
-                    
                     if let businesses = result as? [Business] {
                         self.businesses = businesses
                     }
                     
                     self.tableView.reloadData()
-                } else {
-                    print("\nOops\n")
                 }
                 
                 self.refreshControl?.endRefreshing()

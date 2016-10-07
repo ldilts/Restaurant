@@ -11,6 +11,7 @@ import UIKit
 class RestaurantDetailViewController: UIViewController {
     
     var business: Business!
+    var reviews: [Review] = [Review]()
 
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -19,6 +20,18 @@ class RestaurantDetailViewController: UIViewController {
 
         if let business = self.business {
             self.nameLabel.text = business.name ?? ""
+            
+            RequestFactory.request(forType: .Reviews)?
+                .perform(withParameters: nil,
+                         andID: business.id!,
+                         andCompletion: { (result) in
+                            
+                        if (result != nil) {
+                            if let reviews = result as? [Review] {
+                                self.reviews = reviews
+                            }
+                        }
+                })
         }
     }
 
