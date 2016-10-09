@@ -12,4 +12,10 @@ class CategoryHeaderCollectionReusableView: UICollectionReusableView {
         
     @IBOutlet weak var titleLabel: UILabel!
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self.titleLabel.text = ""
+    }
+    
 }

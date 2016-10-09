@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Xzk-2r-9Lm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -81,11 +81,77 @@
             </objects>
             <point key="canvasLocation" x="2742" y="938"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Welcome View Controller-->
+        <scene sceneID="yYv-eD-QcD">
+            <objects>
+                <viewController storyboardIdentifier="WelcomeViewController" id="isL-M3-ULR" customClass="WelcomeViewController" customModule="Restaurants" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YTl-tN-ZRQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wqm-aS-NlH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZIW-wS-ZwH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPd-pC-8MC">
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="nextButtonTapped:" destination="isL-M3-ULR" eventType="touchUpInside" id="hE4-R1-011"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dPd-pC-8MC" firstAttribute="centerX" secondItem="ZIW-wS-ZwH" secondAttribute="centerX" id="iBL-yW-xPi"/>
+                            <constraint firstItem="wqm-aS-NlH" firstAttribute="top" secondItem="dPd-pC-8MC" secondAttribute="bottom" constant="20" id="zFX-ph-sad"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="Xld-lq-bkU" kind="show" identifier="ShowPermissionPrimingSegue" id="auz-gA-LNb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ip9-pO-4al" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1098" y="-615"/>
+        </scene>
+        <!--Permission Priming View Controller-->
+        <scene sceneID="Du8-u8-lVK">
+            <objects>
+                <viewController id="Xld-lq-bkU" customClass="PermissionPrimingViewController" customModule="Restaurants" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NH6-pY-Aew"/>
+                        <viewControllerLayoutGuide type="bottom" id="7Pu-HW-UL6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kQW-Bj-OPx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gSa-Y0-QAA">
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="doneButtonTapped:" destination="Xld-lq-bkU" eventType="touchUpInside" id="ZBV-iU-13r"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gSa-Y0-QAA" firstAttribute="centerX" secondItem="kQW-Bj-OPx" secondAttribute="centerX" id="KbS-C8-yYH"/>
+                            <constraint firstItem="7Pu-HW-UL6" firstAttribute="top" secondItem="gSa-Y0-QAA" secondAttribute="bottom" constant="20" id="kRN-xL-Q48"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="Xzk-2r-9Lm" kind="presentation" identifier="ShowHomeSegue" id="d9C-hW-A1Y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N0R-iv-1HF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-47" y="-616"/>
+        </scene>
+        <!--Tab Bar View Controller-->
         <scene sceneID="jld-Qu-aYP">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BeB-sD-ba2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tabBarController id="Xzk-2r-9Lm" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainViewController" id="Xzk-2r-9Lm" customClass="TabBarViewController" customModule="Restaurants" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="iWe-6n-t0S">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -190,6 +256,11 @@
                                                         <constraint firstItem="Siw-Mj-UvU" firstAttribute="top" secondItem="2w9-gt-3LE" secondAttribute="bottom" constant="8" id="xnv-lU-xDS"/>
                                                         <constraint firstAttribute="bottom" secondItem="uIC-tM-U6l" secondAttribute="bottom" constant="8" id="zDV-7b-E1S"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <outlet property="detailLabel" destination="uIC-tM-U6l" id="Hj9-ed-6wh"/>
+                                                        <outlet property="previewImageView" destination="2w9-gt-3LE" id="WiC-CQ-22B"/>
+                                                        <outlet property="titleLabel" destination="Siw-Mj-UvU" id="aV6-8A-006"/>
+                                                    </connections>
                                                 </collectionViewCell>
                                             </cells>
                                         </collectionView>

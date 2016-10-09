@@ -14,7 +14,7 @@ import SwiftyJSON
 
 typealias AutocompleteResult = (businesses: [Business], categories: [Category])
 
-@objc protocol Request {
+protocol Request {
     func fetchResults(usingParameters parameters: Parameters?,
                  andID id: String?,
                  andCompletion completion: @escaping (_ result: Any?) -> Void)

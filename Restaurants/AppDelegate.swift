@@ -25,6 +25,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // TODO: Check if token is valid
         
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let initialViewController: UIViewController!
+        
+        if UserDefaults.standard.bool(forKey: "OnboardComplete") {
+            initialViewController = storyboard.instantiateViewController(withIdentifier: "MainViewController")
+        } else {
+            initialViewController = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController")
+        }
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        self.window?.rootViewController = initialViewController!
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 

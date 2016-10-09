@@ -12,6 +12,12 @@ class CategoryCollectionViewCell: UICollectionViewCell, UICollectionViewDataSour
     
     @IBOutlet weak var restaurantsCollectionView: UICollectionView!
     
+    var businesses: [Business]! {
+        didSet {
+            self.restaurantsCollectionView.reloadData()
+        }
+    }
+    
     // MARK: - Life cycle
     
     override func awakeFromNib() {
@@ -24,6 +30,12 @@ class CategoryCollectionViewCell: UICollectionViewCell, UICollectionViewDataSour
         self.restaurantsCollectionView.showsHorizontalScrollIndicator = false
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self.businesses = nil
+    }
+    
     // MARK: - UICollectionViewDataSource
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -32,13 +44,18 @@ class CategoryCollectionViewCell: UICollectionViewCell, UICollectionViewDataSour
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        if let _ = businesses {
+            return businesses!.count
+        }
+        
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RestaurantCell", for: indexPath) as! RestaurantCollectionViewCell
         
         // Configure the cell
+        cell.business = self.businesses[indexPath.row]
         
         return cell
     }
@@ -46,7 +63,7 @@ class CategoryCollectionViewCell: UICollectionViewCell, UICollectionViewDataSour
     // MARK: - UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        NSLog("Tapped!")
+        NSLog("\nTapped: \(self.businesses[indexPath.row].name!)\n")
     }
     
     // MARK: - Collection view flow layout delegate
@@ -54,4 +71,6 @@ class CategoryCollectionViewCell: UICollectionViewCell, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 150.0, height: self.frame.height)
     }
+    
+    // MARK: - Helper methods
 }

@@ -7,10 +7,20 @@
 //
 
 import UIKit
+import Alamofire
+import CoreLocation
 
 private let reuseIdentifier = "CategoryCell"
 
-class CategoryCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class CategoryCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate {
+    
+    var sections: [Section] = [Section](repeating: Section(),
+                                        count:InitialState.categories.count)
+    
+    private let locationManager = CLLocationManager()
+    private let refreshControl: UIRefreshControl = UIRefreshControl()
+    
+    // MARK: - Life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +32,20 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
         // self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
-        self.collectionView?.alwaysBounceVertical = true
+        self.collectionView?.alwaysBounceVertical = true // Needed for refresh control
         self.collectionView?.showsVerticalScrollIndicator = false
         self.collectionView?.showsHorizontalScrollIndicator = false
+        
+        if CLLocationManager.locationServicesEnabled() {
+            self.locationManager.delegate = self
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            self.locationManager.startUpdatingLocation()
+        }
+        
+        self.refreshControl.addTarget(self, action: #selector(CategoryCollectionViewController.refresh(_:)), for: .valueChanged)
+        self.collectionView?.addSubview(refreshControl)
+        
+        self.refresh(sender: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,20 +53,10 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
         // Dispose of any resources that can be recreated.
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return self.sections.count
     }
 
 
@@ -61,7 +72,7 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
                                                   withReuseIdentifier: "CategorySectionHeaderView",
                                                   for: indexPath) as! CategoryHeaderCollectionReusableView
             
-//            headerView.label.text = TODO: Set section title
+            headerView.titleLabel.text = sections[indexPath.section].title
             
             return headerView
         default: assert(false, "Unexpected element kind")
@@ -72,6 +83,7 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CategoryCollectionViewCell
         
         // Configure the cell
+        cell.businesses = sections[indexPath.section].businesses
         
         return cell
     }
@@ -115,8 +127,66 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
     
     // MARK: - Actions
     
-    @IBAction func searchButtonTapped(_ sender: UIBarButtonItem) {
-        // Switch to search tab
+    func refresh(_ sender: Any) {
+        self.refreshControl.beginRefreshing()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            self.locationManager.startUpdatingLocation()
+        }
+        
+        for (index, category) in InitialState.categories.enumerated() {
+            
+            var parameters: Parameters = [
+                "term": category]
+            
+            if CLLocationManager.locationServicesEnabled() {
+                if let location = self.locationManager.location {
+                    parameters["latitude"] = location.coordinate.latitude
+                    parameters["longitute"] = location.coordinate.longitude
+                } else {
+                    parameters["location"] = "Toronto"
+                }
+                
+                // If this is the last query, stop updating user location
+                if index == InitialState.categories.count - 1 {
+                    self.locationManager.stopUpdatingLocation()
+                }
+            } else {
+                parameters["location"] = "Toronto"
+            }
+            
+            RequestFactory.request(forType: .Search)?.fetchResults(usingParameters: parameters, andID: nil, andCompletion: { (result) in
+                
+                if (result != nil) {
+                    if let businesses = result as? [Business] {
+                        let section = Section(withPosition: index,
+                                              andTitle: category,
+                                              andBusinesses: businesses)
+                        
+                        self.sections[index] = section
+                        self.collectionView?.reloadData()
+                    }
+                }
+                
+                self.refreshControl.endRefreshing()
+            })
+        }
     }
+    
+    @IBAction func searchButtonTapped(_ sender: UIBarButtonItem) {
+        let notificationName = Notification.Name("JumpToSearchNotification")
+        
+        NotificationCenter.default.post(name: notificationName, object: nil)
+    }
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using [segue destinationViewController].
+     // Pass the selected object to the new view controller.
+     }
+     */
 
 }

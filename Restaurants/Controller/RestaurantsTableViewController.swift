@@ -17,6 +17,8 @@ class RestaurantsTableViewController: UITableViewController {
     var suggestions: [Business] = [Business]()
     var resultSearchController = UISearchController()
     
+    var shouldStartSearch: Bool = false
+    
     // MARK: - Life cycle
 
     override func viewDidLoad() {
@@ -37,12 +39,18 @@ class RestaurantsTableViewController: UITableViewController {
         self.tableView.tableHeaderView = self.resultSearchController.searchBar
 //        self.tableView.reloadData()
         
-        self.hideSearchBar()
+//        self.hideSearchBar()
         
         self.refreshControl?.addTarget(self, action: #selector(RestaurantsTableViewController.refresh(_:)), for: .valueChanged)
         
-        self.refresh(sender: self)
+//        self.refresh(sender: self)
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.showSearchBar()
     }
 
     override func didReceiveMemoryWarning() {
@@ -130,15 +138,7 @@ class RestaurantsTableViewController: UITableViewController {
     
     
     @IBAction func searchButtonTapped(_ sender: UIBarButtonItem) {
-//        self.tableView.setContentOffset(CGPoint.zero, animated: true)
-        
-        UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveEaseIn, animations: { 
-            self.tableView.contentOffset = CGPoint(x: 0.0, y: 0.0 - self.tableView.contentInset.top)
-        }) { (success) in
-            self.resultSearchController.searchBar.becomeFirstResponder()
-        }
-        
-        
+        self.showSearchBar()
     }
     
     func refresh(_ sender: Any) {
@@ -171,6 +171,15 @@ class RestaurantsTableViewController: UITableViewController {
         var contentOffset: CGPoint  = self.tableView.contentOffset
         contentOffset.y += self.tableView.tableHeaderView!.frame.height
         self.tableView.contentOffset = contentOffset
+    }
+    
+    private func showSearchBar() {
+        UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveEaseIn, animations: {
+            self.tableView.contentOffset = CGPoint(x: 0.0, y: 0.0 - self.tableView.contentInset.top)
+        }) { (success) in
+            self.resultSearchController.searchBar.becomeFirstResponder()
+            self.shouldStartSearch = false
+        }
     }
 
     // MARK: - Navigation

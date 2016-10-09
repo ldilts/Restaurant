@@ -25,6 +25,11 @@
 		86FE88CF1DAAABB3006260AE /* CategoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FE88CE1DAAABB3006260AE /* CategoryCollectionViewController.swift */; };
 		86FE88D11DAAADED006260AE /* RestaurantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FE88D01DAAADED006260AE /* RestaurantCollectionViewCell.swift */; };
 		86FE88D61DAAC301006260AE /* CategoryHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FE88D51DAAC301006260AE /* CategoryHeaderCollectionReusableView.swift */; };
+		86FE88D81DAAC5CC006260AE /* InitialState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FE88D71DAAC5CC006260AE /* InitialState.swift */; };
+		86FE88DA1DAACA37006260AE /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FE88D91DAACA37006260AE /* Section.swift */; };
+		86FE88DC1DAADED6006260AE /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FE88DB1DAADED6006260AE /* TabBarViewController.swift */; };
+		86FE88DE1DAAE823006260AE /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FE88DD1DAAE823006260AE /* WelcomeViewController.swift */; };
+		86FE88E01DAAE841006260AE /* PermissionPrimingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FE88DF1DAAE841006260AE /* PermissionPrimingViewController.swift */; };
 		9A489B12541CD538A99A7433 /* Pods_Restaurants.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B978821A3C430AB5E984174 /* Pods_Restaurants.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +57,11 @@
 		86FE88CE1DAAABB3006260AE /* CategoryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryCollectionViewController.swift; path = Controller/CategoryCollectionViewController.swift; sourceTree = "<group>"; };
 		86FE88D01DAAADED006260AE /* RestaurantCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RestaurantCollectionViewCell.swift; path = Controller/RestaurantCollectionViewCell.swift; sourceTree = "<group>"; };
 		86FE88D51DAAC301006260AE /* CategoryHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryHeaderCollectionReusableView.swift; path = Controller/CategoryHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		86FE88D71DAAC5CC006260AE /* InitialState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialState.swift; sourceTree = "<group>"; };
+		86FE88D91DAACA37006260AE /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Section.swift; path = Model/Section.swift; sourceTree = "<group>"; };
+		86FE88DB1DAADED6006260AE /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabBarViewController.swift; path = Controller/TabBarViewController.swift; sourceTree = "<group>"; };
+		86FE88DD1DAAE823006260AE /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WelcomeViewController.swift; path = Controller/WelcomeViewController.swift; sourceTree = "<group>"; };
+		86FE88DF1DAAE841006260AE /* PermissionPrimingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PermissionPrimingViewController.swift; path = Controller/PermissionPrimingViewController.swift; sourceTree = "<group>"; };
 		B31AFBD15834B7E8F0E53845 /* Pods-Restaurants.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Restaurants.release.xcconfig"; path = "Pods/Target Support Files/Pods-Restaurants/Pods-Restaurants.release.xcconfig"; sourceTree = "<group>"; };
 		F1392EECCF131235CE5F00EB /* Pods-Restaurants.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Restaurants.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Restaurants/Pods-Restaurants.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +127,7 @@
 				86A639C41DA6F042009046ED /* Info.plist */,
 				86A639D11DA6FB88009046ED /* YelpAPIManager.swift */,
 				86A639D81DA71F3D009046ED /* Restaurants-Bridging-Header.h */,
+				86FE88D71DAAC5CC006260AE /* InitialState.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -138,6 +149,7 @@
 				8669B36B1DA820C3005CF1A4 /* Location.swift */,
 				8669B3711DA83140005CF1A4 /* Review.swift */,
 				86FE88C71DA857A4006260AE /* Category.swift */,
+				86FE88D91DAACA37006260AE /* Section.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -148,8 +160,11 @@
 				8669B36D1DA8231B005CF1A4 /* RestaurantsTableViewController.swift */,
 				8669B36F1DA82A38005CF1A4 /* RestaurantDetailViewController.swift */,
 				86FE88CE1DAAABB3006260AE /* CategoryCollectionViewController.swift */,
+				86FE88DB1DAADED6006260AE /* TabBarViewController.swift */,
 				86FE88CD1DAAA7F2006260AE /* Cells */,
 				86FE88D41DAAC2B8006260AE /* Custom Views */,
+				86FE88DD1DAAE823006260AE /* WelcomeViewController.swift */,
+				86FE88DF1DAAE841006260AE /* PermissionPrimingViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -309,14 +324,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86FE88DA1DAACA37006260AE /* Section.swift in Sources */,
 				86288E751DA7D8F2003A87D2 /* RequestFactory.swift in Sources */,
 				8669B3701DA82A38005CF1A4 /* RestaurantDetailViewController.swift in Sources */,
 				8669B36E1DA8231B005CF1A4 /* RestaurantsTableViewController.swift in Sources */,
+				86FE88DC1DAADED6006260AE /* TabBarViewController.swift in Sources */,
 				8669B36C1DA820C3005CF1A4 /* Location.swift in Sources */,
 				8669B36A1DA81A27005CF1A4 /* Coordinates.swift in Sources */,
 				86FE88D11DAAADED006260AE /* RestaurantCollectionViewCell.swift in Sources */,
 				86FE88CF1DAAABB3006260AE /* CategoryCollectionViewController.swift in Sources */,
 				86FE88CC1DAAA7EE006260AE /* CategoryCollectionViewCell.swift in Sources */,
+				86FE88D81DAAC5CC006260AE /* InitialState.swift in Sources */,
 				8669B3721DA83140005CF1A4 /* Review.swift in Sources */,
 				86A639B61DA6F042009046ED /* AppDelegate.swift in Sources */,
 				86288E771DA7F1A0003A87D2 /* Business.swift in Sources */,
@@ -324,6 +342,8 @@
 				86FE88D61DAAC301006260AE /* CategoryHeaderCollectionReusableView.swift in Sources */,
 				86A639BE1DA6F042009046ED /* Restaurants.xcdatamodeld in Sources */,
 				86FE88C81DA857A4006260AE /* Category.swift in Sources */,
+				86FE88E01DAAE841006260AE /* PermissionPrimingViewController.swift in Sources */,
+				86FE88DE1DAAE823006260AE /* WelcomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
