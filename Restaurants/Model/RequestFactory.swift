@@ -12,14 +12,16 @@ import SwiftyJSON
 
 // MARK: - Factory
 
+typealias AutocompleteResult = (businesses: [Business], categories: [Category])
+
 @objc protocol Request {
-    func perform(withParameters parameters: Parameters?,
+    func fetchResults(usingParameters parameters: Parameters?,
                  andID id: String?,
-                 andCompletion completion: @escaping (_ result: [Any]?) -> Void)
+                 andCompletion completion: @escaping (_ result: Any?) -> Void)
 }
 
 class SearchRequest: Request {
-    func perform(withParameters parameters: Parameters?, andID id: String?, andCompletion completion: @escaping ([Any]?) -> Void) {
+    func fetchResults(usingParameters parameters: Parameters?, andID id: String?, andCompletion completion: @escaping (Any?) -> Void) {
         
         guard let _: Parameters = parameters else {
             NSLog("Error: Parameters are required for search")
@@ -29,8 +31,8 @@ class SearchRequest: Request {
         Alamofire.request(Router.search(parameters: parameters!,
                                         page: 1)).responseJSON { (response) in
             guard response.result.isSuccess else {
-                print("Error calling GET on /businesses/search")
-                print(response.result.error!)
+                NSLog("Error calling GET on /businesses/search")
+                NSLog("\(response.result.error!)")
                 completion(nil)
                 return
             }
@@ -57,7 +59,7 @@ class SearchRequest: Request {
 }
 
 class ReviewsRequest: Request {
-    func perform(withParameters parameters: Parameters?, andID id: String?, andCompletion completion: @escaping ([Any]?) -> Void) {
+    func fetchResults(usingParameters parameters: Parameters?, andID id: String?, andCompletion completion: @escaping (Any?) -> Void) {
         
         guard let _ : String = id else {
             NSLog("Error: ID is required for review request")
@@ -66,8 +68,8 @@ class ReviewsRequest: Request {
         
         Alamofire.request(Router.reviews(id: id!)).responseJSON { (response) in
             guard response.result.isSuccess else {
-                print("Error calling GET on /businesses/{id}/reviews")
-                print(response.result.error!)
+                NSLog("Error calling GET on /businesses/{id}/reviews")
+                NSLog("\(response.result.error!)")
                 completion(nil)
                 return
             }
@@ -94,15 +96,16 @@ class ReviewsRequest: Request {
 }
 
 class BusinessRequest: Request {
-    func perform(withParameters parameters: [String : Any]?, andID: String?, andCompletion completion: @escaping ([Any]?) -> Void) {
+    func fetchResults(usingParameters parameters: [String : Any]?, andID: String?, andCompletion completion: @escaping (Any?) -> Void) {
         completion(nil) // TODO: Implement business request
     }
 }
 
 class AutocompleteRequest: Request {
-    func perform(withParameters parameters: Parameters?,
+    
+    func fetchResults(usingParameters parameters: Parameters?,
                  andID id: String?,
-                 andCompletion completion: @escaping ([Any]?) -> Void) {
+                 andCompletion completion: @escaping (Any?) -> Void) {
         
         guard let _: Parameters = parameters else {
             NSLog("Error: Parameters are required for search")
@@ -113,14 +116,16 @@ class AutocompleteRequest: Request {
             .responseJSON { (response) in
             
             guard response.result.isSuccess else {
-                print("Error calling GET on /autocomplete")
-                print(response.result.error!)
+                NSLog("Error calling GET on /autocomplete")
+                NSLog("\(response.result.error!)")
                 completion(nil)
                 return
             }
             
             if let value = response.result.value {
                 let json = JSON(value)
+                
+                var autocompleteResult: AutocompleteResult = (businesses: [Business](), categories: [Category]())
                 
                 if let businesses = json["businesses"].array {
                     
@@ -130,9 +135,21 @@ class AutocompleteRequest: Request {
                         result.append(Business(withJSON: business))
                     }
                     
-                    completion(result)
-                    return
+                    autocompleteResult.businesses = result
                 }
+                
+                if let categories = json["categories"].array {
+                    var result: [Category] = [Category]()
+                    
+                    for category in categories {
+                        result.append(Category(withJSON: category))
+                    }
+                    
+                    autocompleteResult.categories = result
+                }
+                
+                completion([autocompleteResult])
+                return
             }
                 
             completion(nil)

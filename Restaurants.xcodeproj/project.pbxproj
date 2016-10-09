@@ -20,6 +20,7 @@
 		86A639C01DA6F042009046ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86A639BF1DA6F042009046ED /* Assets.xcassets */; };
 		86A639C31DA6F042009046ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86A639C11DA6F042009046ED /* LaunchScreen.storyboard */; };
 		86A639D21DA6FB88009046ED /* YelpAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A639D11DA6FB88009046ED /* YelpAPIManager.swift */; };
+		86FE88C81DA857A4006260AE /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FE88C71DA857A4006260AE /* Category.swift */; };
 		9A489B12541CD538A99A7433 /* Pods_Restaurants.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B978821A3C430AB5E984174 /* Pods_Restaurants.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		86A639D11DA6FB88009046ED /* YelpAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpAPIManager.swift; sourceTree = "<group>"; };
 		86A639D81DA71F3D009046ED /* Restaurants-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Restaurants-Bridging-Header.h"; sourceTree = "<group>"; };
 		86A639DC1DA73510009046ED /* Restaurants.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Restaurants.entitlements; sourceTree = "<group>"; };
+		86FE88C71DA857A4006260AE /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Category.swift; path = Model/Category.swift; sourceTree = "<group>"; };
 		B31AFBD15834B7E8F0E53845 /* Pods-Restaurants.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Restaurants.release.xcconfig"; path = "Pods/Target Support Files/Pods-Restaurants/Pods-Restaurants.release.xcconfig"; sourceTree = "<group>"; };
 		F1392EECCF131235CE5F00EB /* Pods-Restaurants.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Restaurants.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Restaurants/Pods-Restaurants.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,6 +129,7 @@
 				8669B3691DA81A27005CF1A4 /* Coordinates.swift */,
 				8669B36B1DA820C3005CF1A4 /* Location.swift */,
 				8669B3711DA83140005CF1A4 /* Review.swift */,
+				86FE88C71DA857A4006260AE /* Category.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				86288E771DA7F1A0003A87D2 /* Business.swift in Sources */,
 				86A639D21DA6FB88009046ED /* YelpAPIManager.swift in Sources */,
 				86A639BE1DA6F042009046ED /* Restaurants.xcdatamodeld in Sources */,
+				86FE88C81DA857A4006260AE /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

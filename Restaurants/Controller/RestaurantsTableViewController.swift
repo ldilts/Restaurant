@@ -9,11 +9,10 @@
 import UIKit
 import Alamofire
 
-class RestaurantsTableViewController: UITableViewController, UISearchResultsUpdating {
+class RestaurantsTableViewController: UITableViewController {
     
     var businesses: [Business] = [Business]()
     var selectedBusiness: Business?
-//    var refreshControl: UIRefreshControl!
     
     var suggestions: [Business] = [Business]()
     var resultSearchController = UISearchController()
@@ -32,10 +31,13 @@ class RestaurantsTableViewController: UITableViewController, UISearchResultsUpda
         self.resultSearchController = UISearchController(searchResultsController: nil)
         self.resultSearchController.searchResultsUpdater = self
         self.resultSearchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true // The search bar should only stay in this view
         self.resultSearchController.searchBar.sizeToFit()
         
         self.tableView.tableHeaderView = self.resultSearchController.searchBar
 //        self.tableView.reloadData()
+        
+        self.hideSearchBar()
         
         self.refreshControl?.addTarget(self, action: #selector(RestaurantsTableViewController.refresh(_:)), for: .valueChanged)
         
@@ -55,20 +57,22 @@ class RestaurantsTableViewController: UITableViewController, UISearchResultsUpda
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.resultSearchController.isActive {
+        if self.resultSearchController.isActive
+            && self.resultSearchController.searchBar.text != "" {
             return suggestions.count
-        } else {
-            return self.businesses.count
         }
+        
+        return self.businesses.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "restaurantCell", for: indexPath)
         
-        if self.resultSearchController.isActive {
-            if indexPath.row < self.suggestions.count {
+        if self.resultSearchController.isActive
+            && self.resultSearchController.searchBar.text != "" {
+//            if indexPath.row < self.suggestions.count {
                 cell.textLabel?.text = suggestions[indexPath.row].name!
-            }
+//            }
         } else {
             cell.textLabel?.text = businesses[indexPath.row].name!
         }
@@ -119,36 +123,23 @@ class RestaurantsTableViewController: UITableViewController, UISearchResultsUpda
     }
     */
     
-    // MARK: - Search results updating
     
-    func updateSearchResults(for searchController: UISearchController) {
-        self.suggestions.removeAll(keepingCapacity: false)
-        
-        let parameters: Parameters = [
-            "text": searchController.searchBar.text!,
-            "latitude": 51.5032520,
-            "longitude": -0.1278990]
-        
-        RequestFactory.request(forType: .Autocomplete)?
-            .perform(withParameters: parameters,
-                     andID: nil,
-                     andCompletion: { (result) in
-                        
-                        if (result != nil) {
-                            if let businesses = result as? [Business] {
-                                self.suggestions = businesses
-                                
-                                self.tableView.reloadData()
-                            }
-                        }
-            
-        })
-        
-        
-    }
     
     
     // MARK: - Actions
+    
+    
+    @IBAction func searchButtonTapped(_ sender: UIBarButtonItem) {
+//        self.tableView.setContentOffset(CGPoint.zero, animated: true)
+        
+        UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveEaseIn, animations: { 
+            self.tableView.contentOffset = CGPoint(x: 0.0, y: 0.0 - self.tableView.contentInset.top)
+        }) { (success) in
+            self.resultSearchController.searchBar.becomeFirstResponder()
+        }
+        
+        
+    }
     
     func refresh(_ sender: Any) {
         self.refreshControl?.beginRefreshing()
@@ -160,7 +151,7 @@ class RestaurantsTableViewController: UITableViewController, UISearchResultsUpda
             "longitude": -0.1278990]
         
         RequestFactory.request(forType: .Search)?
-            .perform(withParameters: parameters, andID: nil, andCompletion: { (result) in
+            .fetchResults(usingParameters: parameters, andID: nil, andCompletion: { (result) in
                 
                 if (result != nil) {
                     if let businesses = result as? [Business] {
@@ -172,6 +163,14 @@ class RestaurantsTableViewController: UITableViewController, UISearchResultsUpda
                 
                 self.refreshControl?.endRefreshing()
             })
+    }
+    
+    // MARK: - Helper Methods
+    
+    private func hideSearchBar() {
+        var contentOffset: CGPoint  = self.tableView.contentOffset
+        contentOffset.y += self.tableView.tableHeaderView!.frame.height
+        self.tableView.contentOffset = contentOffset
     }
 
     // MARK: - Navigation
@@ -190,7 +189,37 @@ class RestaurantsTableViewController: UITableViewController, UISearchResultsUpda
             self.selectedBusiness = nil
         }
         
-        self.resultSearchController.dismiss(animated: false, completion: nil)
+//        self.resultSearchController.dismiss(animated: false, completion: nil)
     }
 
+}
+
+// MARK: - Search results updating
+
+extension RestaurantsTableViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        self.suggestions.removeAll(keepingCapacity: false)
+        
+        let parameters: Parameters = [
+            "text": searchController.searchBar.text!,
+            "latitude": 51.5032520,
+            "longitude": -0.1278990]
+        
+        RequestFactory.request(forType: .Autocomplete)?
+            .fetchResults(usingParameters: parameters,
+                          andID: nil,
+                          andCompletion: { (result) in
+                            
+                            if (result != nil) {
+                                if let results = result as? AutocompleteResult {
+//                                    self.suggestions = businesses
+                                    
+                                    self.tableView.reloadData()
+                                }
+                            }
+                            
+            })
+        
+        
+    }
 }

@@ -66,8 +66,8 @@ class YelpAPIManager {
         Alamofire.request("https://api.yelp.com/oauth2/token", method: .post, parameters: parameters).responseJSON { (response) in
             
             guard response.result.isSuccess else {
-                print("Error calling POST on /oauth2/token")
-                print(response.result.error!)
+                NSLog("Error calling POST on /oauth2/token")
+                NSLog("\(response.result.error!)")
                 completion(false)
                 return
             }

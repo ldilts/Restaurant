@@ -17,7 +17,7 @@ class Business: NSObject {
     var price: String!
     var phone: String!
     var id: String!
-    var category: String!
+    var category: Category!
     var reviewCount: Int!
     var name: String!
     var url: URL!
@@ -44,8 +44,8 @@ class Business: NSObject {
             self.id = id
         }
         
-        if let category = json["categories"]["title"].string {
-            self.category = category
+        if let category = json["categories"].object as? JSON {
+            self.category = Category(withJSON: category)
         }
         
         if let reviewCount = json["review_count"].int {

@@ -22,7 +22,7 @@ class RestaurantDetailViewController: UIViewController {
             self.nameLabel.text = business.name ?? ""
             
             RequestFactory.request(forType: .Reviews)?
-                .perform(withParameters: nil,
+                .fetchResults(usingParameters: nil,
                          andID: business.id!,
                          andCompletion: { (result) in
                             
