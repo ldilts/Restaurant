@@ -33,4 +33,15 @@ public struct Category {
             self.title = title
         }
     }
+    
+    // This is needed to support the mocked custom service
+    init(withJSON json: [String: Any]) {
+        if let alias = json["alias"] as? String {
+            self.alias = alias
+        }
+        
+        if let title = json["title"] as? String {
+            self.title = title
+        }
+    }
 }

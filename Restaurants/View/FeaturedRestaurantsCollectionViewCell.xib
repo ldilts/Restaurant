@@ -63,7 +63,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xb4-PV-I3B">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xb4-PV-I3B">
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="xb4-PV-I3B" secondAttribute="height" multiplier="1:1" id="QbV-Kq-Zw5"/>
@@ -74,7 +74,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5RJ-jO-8yZ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5RJ-jO-8yZ">
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="5RJ-jO-8yZ" secondAttribute="height" multiplier="1:1" id="Da0-wD-3I3"/>
@@ -85,7 +85,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qmU-gA-GEb">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qmU-gA-GEb">
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="qmU-gA-GEb" secondAttribute="height" multiplier="1:1" id="lSd-DU-hSg"/>
@@ -96,7 +96,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q1o-t1-fsL">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q1o-t1-fsL">
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="q1o-t1-fsL" secondAttribute="height" multiplier="1:1" id="gO0-pu-Hal"/>
@@ -107,7 +107,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="10t-QL-DNQ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="10t-QL-DNQ">
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="10t-QL-DNQ" secondAttribute="height" multiplier="1:1" id="nU7-fn-Q5K"/>
@@ -118,7 +118,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wGU-7q-oOF">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wGU-7q-oOF">
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="wGU-7q-oOF" secondAttribute="height" multiplier="1:1" id="3G6-cJ-Ewc"/>
@@ -129,7 +129,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gsU-hK-Cfh">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gsU-hK-Cfh">
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gsU-hK-Cfh" secondAttribute="height" multiplier="1:1" id="Qg0-I1-x7t"/>
@@ -140,7 +140,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3ct-t4-pZ0">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3ct-t4-pZ0">
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3ct-t4-pZ0" secondAttribute="height" multiplier="1:1" id="A1P-vN-38m"/>
@@ -226,6 +226,7 @@
                 <constraint firstItem="gcw-TH-q9H" firstAttribute="leading" secondItem="Ndr-te-oq6" secondAttribute="leading" id="xhg-2n-gge"/>
             </constraints>
             <connections>
+                <outlet property="detailLabel" destination="IgP-kC-tKx" id="7Eg-sI-FwC"/>
                 <outlet property="imageViewEight" destination="3ct-t4-pZ0" id="Vdi-d2-iHL"/>
                 <outlet property="imageViewFive" destination="10t-QL-DNQ" id="sub-kr-5m3"/>
                 <outlet property="imageViewFour" destination="q1o-t1-fsL" id="BF1-rV-WnN"/>
@@ -234,6 +235,16 @@
                 <outlet property="imageViewSix" destination="wGU-7q-oOF" id="Gaf-Yf-o9B"/>
                 <outlet property="imageViewThree" destination="qmU-gA-GEb" id="vaU-iz-4p5"/>
                 <outlet property="imageViewTwo" destination="5RJ-jO-8yZ" id="o1H-Fz-RVm"/>
+                <outlet property="titleBackgroundView" destination="Flr-o3-9zx" id="cao-DA-OUn"/>
+                <outlet property="titleLabel" destination="r3w-gT-Fw8" id="st8-Xx-zu6"/>
+                <outletCollection property="imageViews" destination="xb4-PV-I3B" collectionClass="NSMutableArray" id="fUX-E9-naK"/>
+                <outletCollection property="imageViews" destination="5RJ-jO-8yZ" collectionClass="NSMutableArray" id="3sW-uO-yfO"/>
+                <outletCollection property="imageViews" destination="qmU-gA-GEb" collectionClass="NSMutableArray" id="TmF-Tc-tWx"/>
+                <outletCollection property="imageViews" destination="q1o-t1-fsL" collectionClass="NSMutableArray" id="Gub-Vg-iMq"/>
+                <outletCollection property="imageViews" destination="10t-QL-DNQ" collectionClass="NSMutableArray" id="GjZ-YI-aTB"/>
+                <outletCollection property="imageViews" destination="wGU-7q-oOF" collectionClass="NSMutableArray" id="8y9-0H-GA1"/>
+                <outletCollection property="imageViews" destination="gsU-hK-Cfh" collectionClass="NSMutableArray" id="4zD-D5-XRy"/>
+                <outletCollection property="imageViews" destination="3ct-t4-pZ0" collectionClass="NSMutableArray" id="qnn-Vh-aQP"/>
             </connections>
             <point key="canvasLocation" x="-43.5" y="-181.5"/>
         </collectionViewCell>

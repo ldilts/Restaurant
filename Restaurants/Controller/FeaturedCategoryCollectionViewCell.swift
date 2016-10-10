@@ -13,6 +13,12 @@ class FeaturedCategoryCollectionViewCell: UICollectionViewCell, UICollectionView
     @IBOutlet weak var featuredRestaurantsCollectionView: UICollectionView!
     @IBOutlet weak var gradientBackgroundView: UIView!
     
+    var featuredSections: [FeaturedSection]! {
+        didSet {
+            featuredRestaurantsCollectionView.reloadData()
+        }
+    }
+    
     // MARK: - Life cycle
     
     override func awakeFromNib() {
@@ -57,14 +63,18 @@ class FeaturedCategoryCollectionViewCell: UICollectionViewCell, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return InitialState.featuredCategories.count
+        guard let _ = featuredSections else {
+            return 0
+        }
+        
+        return featuredSections!.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FeaturedRestaurantsCell", for: indexPath) as! FeaturedRestaurantsCollectionViewCell
         
         // Configure the cell
-//        cell.business = self.businesses[indexPath.row]
+        cell.featuredSection = self.featuredSections![indexPath.row]
         
         return cell
     }
@@ -81,20 +91,6 @@ class FeaturedCategoryCollectionViewCell: UICollectionViewCell, UICollectionView
         let columnWidth = (UIScreen.main.bounds.width - 40.0) // (screen width - padding)
         
         return CGSize(width: columnWidth, height: self.frame.height)
-    }
-}
-
-extension UIView {
-    func applyGradient(colours: [UIColor]) -> Void {
-        self.applyGradient(colours: colours, locations: nil)
-    }
-    
-    func applyGradient(colours: [UIColor], locations: [NSNumber]?) -> Void {
-        let gradient: CAGradientLayer = CAGradientLayer()
-        gradient.frame = self.bounds
-        gradient.colors = colours.map { $0.cgColor }
-        gradient.locations = locations
-        self.layer.insertSublayer(gradient, at: 0)
     }
 }
 

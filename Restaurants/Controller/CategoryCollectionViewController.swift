@@ -14,8 +14,9 @@ private let reuseIdentifier = "CategoryCell"
 
 class CategoryCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate {
     
-    var sections: [Section] = [Section](repeating: Section(),
-                                        count:InitialState.categories.count)
+    var featuredSections: [FeaturedSection] = [FeaturedSection]()
+    
+    var suggestedSections: [SuggestedSection] = [SuggestedSection]()
     
     private let locationManager = CLLocationManager()
     private let refreshControl: UIRefreshControl = UIRefreshControl()
@@ -39,15 +40,30 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
         self.collectionView?.showsVerticalScrollIndicator = false
         self.collectionView?.showsHorizontalScrollIndicator = false
         
+        // get user location is permitted
         if CLLocationManager.locationServicesEnabled() {
             self.locationManager.delegate = self
             self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
             self.locationManager.startUpdatingLocation()
         }
         
+        // Fetch featured Categories
+        // This is mocked and actually fetched locally for this demo
+        for featuredSection in InitialState.featuredSections {
+            self.featuredSections.append(FeaturedSection(withJSON: featuredSection))
+        }
+        
+        // Fetch Categories
+        // This is mocked and actually fetched locally for this demo
+        for suggestedSection in InitialState.sections {
+            self.suggestedSections.append(SuggestedSection(withJSON: suggestedSection))
+        }
+        
+        // Setup pull-down to refresh
         self.refreshControl.addTarget(self, action: #selector(CategoryCollectionViewController.refresh(_:)), for: .valueChanged)
         self.collectionView?.addSubview(refreshControl)
         
+        // Refresh
         self.refresh(sender: self)
     }
 
@@ -59,7 +75,7 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return self.sections.count + 1 // Featured + sections
+        return self.suggestedSections.count + 1 // Featured + sections
     }
 
 
@@ -76,7 +92,7 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
                                                   withReuseIdentifier: "CategorySectionHeaderView",
                                                   for: indexPath) as! CategoryHeaderCollectionReusableView
             
-            headerView.titleLabel.text = indexPath.section == 0 ? "" : sections[indexPath.section - 1].title
+            headerView.titleLabel.text = indexPath.section == 0 ? "" : suggestedSections[indexPath.section - 1].title
             
             return headerView
         default: assert(false, "Unexpected element kind")
@@ -89,7 +105,7 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FeaturedCategoryCell", for: indexPath) as! FeaturedCategoryCollectionViewCell
             
             // Configure the cell
-//            cell.businesses = sections[indexPath.section].businesses
+            cell.featuredSections = featuredSections
             
             return cell
         }
@@ -97,7 +113,7 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CategoryCollectionViewCell
         
         // Configure the cell
-        cell.businesses = sections[indexPath.section - 1].businesses
+        cell.businesses = suggestedSections[indexPath.section - 1].businesses
         
         return cell
     }
@@ -177,13 +193,36 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
             self.locationManager.startUpdatingLocation()
         }
         
-        self.sections = [Section](repeating: Section(),
-        count:InitialState.categories.count)
+        // Fetch data for the featured category rows
+        for (index, featuredSection) in self.featuredSections.enumerated() {
+            
+            let parameters: Parameters = [
+                "term": featuredSection.category!.alias!,
+                "location": featuredSection.location]
+            
+            RequestFactory.request(forType: .Search)?
+                .fetchResults(usingParameters: parameters,
+                              andID: nil,
+                              andCompletion: { (result) in
+                
+                if (result != nil) {
+                    if let businesses = result as? [Business] {
+                        
+                        featuredSection.position = index
+                        featuredSection.businesses = businesses
+                    
+                        self.featuredSections[index] = featuredSection
+                        self.collectionView?.reloadData()
+                    }
+                }
+            })
+        }
         
-        for (index, category) in InitialState.categories.enumerated() {
+        // Fetch data for the category rows
+        for (index, suggestedSection) in self.suggestedSections.enumerated() {
             
             var parameters: Parameters = [
-                "term": category]
+                "term": suggestedSection.title]
             
             if CLLocationManager.locationServicesEnabled() {
                 if let location = self.locationManager.location {
@@ -197,7 +236,7 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
                 }
                 
                 // If this is the last query, stop updating user location
-                if index == InitialState.categories.count - 1 {
+                if index == self.suggestedSections.count - 1 {
                     self.locationManager.stopUpdatingLocation()
                 }
             } else {
@@ -208,16 +247,15 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
                 
                 if (result != nil) {
                     if let businesses = result as? [Business] {
-                        let section = Section(withPosition: index,
-                                              andTitle: category,
-                                              andBusinesses: businesses)
+                        suggestedSection.position = index
+                        suggestedSection.businesses = businesses
                         
-                        self.sections[index] = section
+                        self.suggestedSections[index] = suggestedSection
                         self.collectionView?.reloadData()
                     }
                 }
                 
-                if index == InitialState.categories.count - 1 {
+                if index == self.suggestedSections.count - 1 {
                     self.refreshControl.endRefreshing()
                 }
             })

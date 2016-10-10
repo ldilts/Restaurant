@@ -7,8 +7,14 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
 class FeaturedRestaurantsCollectionViewCell: UICollectionViewCell {
+    
+    @IBOutlet weak var titleBackgroundView: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var detailLabel: UILabel!
     
     @IBOutlet weak var imageViewOne: UIImageView!
     @IBOutlet weak var imageViewTwo: UIImageView!
@@ -19,9 +25,58 @@ class FeaturedRestaurantsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageViewSeven: UIImageView!
     @IBOutlet weak var imageViewEight: UIImageView!
     
+    @IBOutlet var imageViews: [UIImageView]!
+    
+    
+    var featuredSection: FeaturedSection! {
+        didSet {
+            self.configureUI()
+        }
+    }
+    
+    // MARK: - Life cycle
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        for imageView in self.imageViews {
+            imageView.image = nil
+        }
+        
+        self.featuredSection = nil
+    }
+    
+    // MARK: - Helper Methods
+    
+    private func configureUI() {
+        
+        // Load images async
+        if let _ = featuredSection {
+        
+            let businesses = featuredSection!.businesses
+            
+            for (index, imageView) in imageViews.enumerated() {
+                if businesses.indices.contains(index) {
+                    if let imageURL = businesses[index].imageURL {
+                        Alamofire.request(imageURL)
+                            .responseImage(completionHandler: { (response) in
+                                if let image = response.result.value {
+                                    imageView.image = image
+                                }
+                            })
+                    }
+                }
+            }
+            
+            self.titleLabel.text = featuredSection!.title
+            self.detailLabel.text = featuredSection!.detail
+            
+            self.titleBackgroundView.backgroundColor = featuredSection!.color
+        }
+    }
 }
