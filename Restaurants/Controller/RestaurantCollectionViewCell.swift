@@ -27,6 +27,8 @@ class RestaurantCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
+        self.previewImageView.image = nil
+        
         self.titleLabel.text = ""
         self.detailLabel.text = ""
     }
@@ -49,10 +51,8 @@ class RestaurantCollectionViewCell: UICollectionViewCell {
             
             // Business Image
             if let imageURL = business!.imageURL {
-                Alamofire.request(imageURL).responseImage { response in
-                    if let image = response.result.value {
-                        self.previewImageView.image = image
-                    }
+                if let url = URL(string: imageURL) {
+                    previewImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.2))
                 }
             }
         }

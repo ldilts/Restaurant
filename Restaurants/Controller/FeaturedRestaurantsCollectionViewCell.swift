@@ -44,6 +44,9 @@ class FeaturedRestaurantsCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
+        self.titleLabel.text = ""
+        self.detailLabel.text = ""
+        
         for imageView in self.imageViews {
             imageView.image = nil
         }
@@ -63,12 +66,9 @@ class FeaturedRestaurantsCollectionViewCell: UICollectionViewCell {
             for (index, imageView) in imageViews.enumerated() {
                 if businesses.indices.contains(index) {
                     if let imageURL = businesses[index].imageURL {
-                        Alamofire.request(imageURL)
-                            .responseImage(completionHandler: { (response) in
-                                if let image = response.result.value {
-                                    imageView.image = image
-                                }
-                            })
+                        if let url = URL(string: imageURL) {
+                            imageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.2))
+                        }
                     }
                 }
             }
