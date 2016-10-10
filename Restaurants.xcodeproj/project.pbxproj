@@ -28,6 +28,7 @@
 		86D2373C1DABFCDC00DF8D40 /* SuggestedSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2373B1DABFCDC00DF8D40 /* SuggestedSection.swift */; };
 		86D2373E1DAC05D300DF8D40 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2373D1DAC05D300DF8D40 /* UIColor+Extension.swift */; };
 		86D237401DAC060200DF8D40 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2373F1DAC060200DF8D40 /* UIView+Extension.swift */; };
+		86D237421DAC19B200DF8D40 /* SearchResultRestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D237411DAC19B200DF8D40 /* SearchResultRestaurantTableViewCell.swift */; };
 		86FE88C81DA857A4006260AE /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FE88C71DA857A4006260AE /* Category.swift */; };
 		86FE88CC1DAAA7EE006260AE /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FE88CB1DAAA7EE006260AE /* CategoryCollectionViewCell.swift */; };
 		86FE88CF1DAAABB3006260AE /* CategoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FE88CE1DAAABB3006260AE /* CategoryCollectionViewController.swift */; };
@@ -67,6 +68,7 @@
 		86D2373B1DABFCDC00DF8D40 /* SuggestedSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggestedSection.swift; path = Model/SuggestedSection.swift; sourceTree = "<group>"; };
 		86D2373D1DAC05D300DF8D40 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		86D2373F1DAC060200DF8D40 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		86D237411DAC19B200DF8D40 /* SearchResultRestaurantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultRestaurantTableViewCell.swift; path = Controller/SearchResultRestaurantTableViewCell.swift; sourceTree = "<group>"; };
 		86FE88C71DA857A4006260AE /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Category.swift; path = Model/Category.swift; sourceTree = "<group>"; };
 		86FE88CB1DAAA7EE006260AE /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryCollectionViewCell.swift; path = Controller/CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		86FE88CE1DAAABB3006260AE /* CategoryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryCollectionViewController.swift; path = Controller/CategoryCollectionViewController.swift; sourceTree = "<group>"; };
@@ -175,10 +177,10 @@
 		86A639CE1DA6F0A3009046ED /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				86FE88DB1DAADED6006260AE /* TabBarViewController.swift */,
+				86FE88CE1DAAABB3006260AE /* CategoryCollectionViewController.swift */,
 				8669B36D1DA8231B005CF1A4 /* RestaurantsTableViewController.swift */,
 				8669B36F1DA82A38005CF1A4 /* RestaurantDetailViewController.swift */,
-				86FE88CE1DAAABB3006260AE /* CategoryCollectionViewController.swift */,
-				86FE88DB1DAADED6006260AE /* TabBarViewController.swift */,
 				86FE88DD1DAAE823006260AE /* WelcomeViewController.swift */,
 				86FE88DF1DAAE841006260AE /* PermissionPrimingViewController.swift */,
 				86FE88CD1DAAA7F2006260AE /* Cells */,
@@ -203,6 +205,7 @@
 				86FE88D01DAAADED006260AE /* RestaurantCollectionViewCell.swift */,
 				86D2372C1DABBFEC00DF8D40 /* FeaturedCategoryCollectionViewCell.swift */,
 				86D237331DABD3E700DF8D40 /* FeaturedRestaurantsCollectionViewCell.swift */,
+				86D237411DAC19B200DF8D40 /* SearchResultRestaurantTableViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				86FE88CC1DAAA7EE006260AE /* CategoryCollectionViewCell.swift in Sources */,
 				86FE88D81DAAC5CC006260AE /* InitialState.swift in Sources */,
 				8669B3721DA83140005CF1A4 /* Review.swift in Sources */,
+				86D237421DAC19B200DF8D40 /* SearchResultRestaurantTableViewCell.swift in Sources */,
 				86D2373A1DABE94800DF8D40 /* FeaturedSection.swift in Sources */,
 				86A639B61DA6F042009046ED /* AppDelegate.swift in Sources */,
 				86D2373E1DAC05D300DF8D40 /* UIColor+Extension.swift in Sources */,

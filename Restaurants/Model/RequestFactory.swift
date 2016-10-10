@@ -148,7 +148,7 @@ class AutocompleteRequest: Request {
                     autocompleteResult.categories = result
                 }
                 
-                completion([autocompleteResult])
+                completion(autocompleteResult)
                 return
             }
                 
