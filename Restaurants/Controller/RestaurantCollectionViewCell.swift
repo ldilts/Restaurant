@@ -34,6 +34,14 @@ class RestaurantCollectionViewCell: UICollectionViewCell {
     private func configureUI() {
         if let _ = self.business {
             self.titleLabel.text = self.business!.name ?? ""
+            
+            var categoryString: String = ""
+            
+            for category in business!.categories {
+                categoryString.append("\(category.title!) ")
+            }
+            
+            self.detailLabel.text = categoryString
         }
     }
 }

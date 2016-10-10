@@ -69,7 +69,10 @@ class CategoryCollectionViewCell: UICollectionViewCell, UICollectionViewDataSour
     // MARK: - Collection view flow layout delegate
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150.0, height: self.frame.height)
+        
+        let columnWidth = (UIScreen.main.bounds.width - 50.0) / 2.0 // (screen width - padding) / 2.0
+        
+        return CGSize(width: columnWidth, height: self.frame.height)
     }
     
     // MARK: - Helper methods

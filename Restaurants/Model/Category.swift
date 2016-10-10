@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-public struct Category {
+public class Category {
 
     var alias: String!
     var title: String!

@@ -122,7 +122,19 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
     // MARK: - Collection view flow layout delegate
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 150.0)
+        
+        let imageHeight = (UIScreen.main.bounds.width - 50.0) / 2.0 // (screen width - padding) / 2.0
+        let rowHeight = imageHeight + 8.0 + 68.0 // image height + top padding + bottom padding
+        
+        return CGSize(width: view.frame.width, height: rowHeight)
+    }
+    
+    // MARK: - Location manager delegate
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        // TODO: update with new location!
+        
+        self.locationManager.stopUpdatingLocation()
     }
     
     // MARK: - Actions
@@ -134,6 +146,9 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
             self.locationManager.startUpdatingLocation()
         }
         
+        self.sections = [Section](repeating: Section(),
+        count:InitialState.categories.count)
+        
         for (index, category) in InitialState.categories.enumerated() {
             
             var parameters: Parameters = [
@@ -143,6 +158,9 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
                 if let location = self.locationManager.location {
                     parameters["latitude"] = location.coordinate.latitude
                     parameters["longitute"] = location.coordinate.longitude
+                    
+                    print("\n Lat: \(location.coordinate.latitude)\n")
+                    print("\n Lon: \(location.coordinate.longitude)\n")
                 } else {
                     parameters["location"] = "Toronto"
                 }
@@ -168,7 +186,9 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
                     }
                 }
                 
-                self.refreshControl.endRefreshing()
+                if index == InitialState.categories.count - 1 {
+                    self.refreshControl.endRefreshing()
+                }
             })
         }
     }
