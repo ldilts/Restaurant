@@ -3,6 +3,7 @@ use_frameworks!
 
 target 'Restaurants' do
   pod 'Alamofire', '~> 4.0'
+  pod 'AlamofireImage', '~> 3.1'
   pod 'SwiftyJSON', '~> 3.1'
   pod 'SwiftKeychainWrapper', '~> 3.0'
   pod 'Locksmith', '~> 3.0'

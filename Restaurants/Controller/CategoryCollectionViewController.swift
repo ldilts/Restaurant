@@ -31,6 +31,9 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
         // Register cell classes
         // self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
+        let nib: UINib = UINib(nibName: "FeaturedCategoryCollectionViewCell", bundle: nil)
+        self.collectionView?.register(nib, forCellWithReuseIdentifier: "FeaturedCategoryCell")
+        
         // Do any additional setup after loading the view.
         self.collectionView?.alwaysBounceVertical = true // Needed for refresh control
         self.collectionView?.showsVerticalScrollIndicator = false
@@ -56,7 +59,7 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return self.sections.count
+        return self.sections.count + 1 // Featured + sections
     }
 
 
@@ -65,6 +68,7 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
         switch kind {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView
@@ -72,7 +76,7 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
                                                   withReuseIdentifier: "CategorySectionHeaderView",
                                                   for: indexPath) as! CategoryHeaderCollectionReusableView
             
-            headerView.titleLabel.text = sections[indexPath.section].title
+            headerView.titleLabel.text = indexPath.section == 0 ? "" : sections[indexPath.section - 1].title
             
             return headerView
         default: assert(false, "Unexpected element kind")
@@ -80,10 +84,20 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if indexPath.section == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FeaturedCategoryCell", for: indexPath) as! FeaturedCategoryCollectionViewCell
+            
+            // Configure the cell
+//            cell.businesses = sections[indexPath.section].businesses
+            
+            return cell
+        }
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CategoryCollectionViewCell
         
         // Configure the cell
-        cell.businesses = sections[indexPath.section].businesses
+        cell.businesses = sections[indexPath.section - 1].businesses
         
         return cell
     }
@@ -121,7 +135,24 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
     
     // MARK: - Collection view flow layout delegate
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if section == 0 {
+            return .zero
+        }
+        
+        return CGSize(width: self.view.frame.width, height: 48.5)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        if indexPath.section == 0 {
+            
+            // Sorry for the magic numbers
+            let smallFeaturedImageWidth = (UIScreen.main.bounds.size.width - 80.0) / 5.0
+            let featuredRowHeight = ((smallFeaturedImageWidth * 2.0) + 4.0) + 4.0 + smallFeaturedImageWidth + 24.0 + 52.0
+            
+            return CGSize(width: view.frame.width, height: featuredRowHeight)
+        }
         
         let imageHeight = (UIScreen.main.bounds.width - 50.0) / 2.0 // (screen width - padding) / 2.0
         let rowHeight = imageHeight + 8.0 + 68.0 // image height + top padding + bottom padding

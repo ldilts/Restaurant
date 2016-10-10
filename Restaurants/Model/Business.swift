@@ -22,7 +22,7 @@ class Business: NSObject {
     var name: String!
     var url: URL!
     var coordinates: Coordinates!
-    var imageURL: URL!
+    var imageURL: String!
     var location: Location!
     
     
@@ -68,10 +68,8 @@ class Business: NSObject {
             self.coordinates = Coordinates(withJSON: coordinates)
         }
         
-        if let imageURLString = json["image_url"].string {
-            if let imageURL = URL(string: imageURLString) {
-                self.imageURL = imageURL
-            }
+        if let imageURL = json["image_url"].string {
+            self.imageURL = imageURL
         }
         
         if let location = json["location"].object as? JSON {

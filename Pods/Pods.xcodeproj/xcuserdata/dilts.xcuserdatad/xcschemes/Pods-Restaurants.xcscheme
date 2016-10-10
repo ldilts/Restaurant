@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0800"
+   LastUpgradeVersion = "0700"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1F8BFD5104AFC276A6998F63FB9CB08E"
+               BlueprintIdentifier = "D3314CAD4B4D32544F92CD6DED31872A"
                BuildableName = "Pods_Restaurants.framework"
                BlueprintName = "Pods-Restaurants"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1F8BFD5104AFC276A6998F63FB9CB08E"
+            BlueprintIdentifier = "D3314CAD4B4D32544F92CD6DED31872A"
             BuildableName = "Pods_Restaurants.framework"
             BlueprintName = "Pods-Restaurants"
             ReferencedContainer = "container:Pods.xcodeproj">

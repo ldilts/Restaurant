@@ -1,21 +1,25 @@
 PODS:
   - Alamofire (4.0.1)
+  - AlamofireImage (3.1.0):
+    - Alamofire (~> 4.0)
   - Locksmith (3.0.0)
   - SwiftKeychainWrapper (3.0.0)
   - SwiftyJSON (3.1.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
+  - AlamofireImage (~> 3.1)
   - Locksmith (~> 3.0)
   - SwiftKeychainWrapper (~> 3.0)
   - SwiftyJSON (~> 3.1)
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  AlamofireImage: bb8c8351c51cb1633bb6be69b6dbbaff37ce65b7
   Locksmith: 310b4cc5031af5728bf4db5d4de547a5100c6a3b
   SwiftKeychainWrapper: aa69884eb623a6f7d644921bbf58c8cee416a9e6
   SwiftyJSON: 29b9f2a64f118c07e691667c2ba1efe536acfe0b
 
-PODFILE CHECKSUM: 6690f740edec162c5127ce3222094531b24de3ea
+PODFILE CHECKSUM: 6c4ac7faccf68259c01bc16361985db1a0565e38
 
 COCOAPODS: 1.1.0.rc.2

@@ -9,10 +9,20 @@
 import UIKit
 import SwiftyJSON
 
-public class Category {
+public struct Category {
 
     var alias: String!
     var title: String!
+    
+    init() {
+        alias = ""
+        title = ""
+    }
+    
+    init(withAlias alias: String, andTitle title: String) {
+        self.alias = alias
+        self.title = title
+    }
     
     init(withJSON json: JSON) {
         if let alias = json["alias"].string {

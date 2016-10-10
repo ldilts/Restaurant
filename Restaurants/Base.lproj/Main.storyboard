@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H0k-W3-q60" id="QsB-4T-yZ1">
-                                    <frame key="frameInset" width="375" height="43.5"/>
+                                    <frame key="frameInset" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -207,7 +207,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yHZ-0m-JeR">
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="Vhj-3n-euM">
                                                 <size key="itemSize" width="162.5" height="230.5"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -222,7 +222,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="162.5" height="230.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2w9-gt-3LE">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2w9-gt-3LE">
                                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="2w9-gt-3LE" secondAttribute="height" multiplier="1:1" id="enf-ZR-wXg"/>
@@ -272,13 +272,22 @@
                                                 </collectionViewCell>
                                             </cells>
                                         </collectionView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xYR-3t-rsU">
+                                            <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="0.5" id="aOK-yJ-FzP"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                 </view>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="xYR-3t-rsU" secondAttribute="trailing" constant="20" id="2Du-Mh-TdQ"/>
                                     <constraint firstItem="yHZ-0m-JeR" firstAttribute="leading" secondItem="ayT-et-5j8" secondAttribute="leading" id="OIx-EP-SFn"/>
+                                    <constraint firstAttribute="bottom" secondItem="xYR-3t-rsU" secondAttribute="bottom" id="cfi-wq-Ng7"/>
                                     <constraint firstAttribute="trailing" secondItem="yHZ-0m-JeR" secondAttribute="trailing" id="iXz-fS-Xbc"/>
                                     <constraint firstAttribute="bottom" secondItem="yHZ-0m-JeR" secondAttribute="bottom" id="lmZ-Ss-4W8"/>
+                                    <constraint firstItem="xYR-3t-rsU" firstAttribute="leading" secondItem="ayT-et-5j8" secondAttribute="leading" constant="20" id="rDL-cb-Rxc"/>
                                     <constraint firstItem="yHZ-0m-JeR" firstAttribute="top" secondItem="ayT-et-5j8" secondAttribute="top" id="yuZ-i0-iaG"/>
                                 </constraints>
                                 <connections>
@@ -299,6 +308,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="y9h-vY-pE1" secondAttribute="trailing" constant="20" id="8B8-q9-PyV"/>
                                 <constraint firstItem="y9h-vY-pE1" firstAttribute="centerY" secondItem="FOn-sc-gu7" secondAttribute="centerY" id="9jC-Oi-6Zc"/>

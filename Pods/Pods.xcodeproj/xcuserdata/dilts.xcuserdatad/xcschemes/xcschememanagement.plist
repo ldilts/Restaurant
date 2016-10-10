@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>AlamofireImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Locksmith.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,12 +37,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1F8BFD5104AFC276A6998F63FB9CB08E</key>
+		<key>2FD453499824A47BF0FB275F9167EE45</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4B2DBD9FB19D3BE05580C8CF00E0F2D7</key>
+		<key>333E47F1004946B94926B19979768D18</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,7 +57,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C4290CEDD0340402ACC67948A6809EF2</key>
+		<key>D3314CAD4B4D32544F92CD6DED31872A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DF4E16F1AD3DB9E2040EF56F8950B72D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

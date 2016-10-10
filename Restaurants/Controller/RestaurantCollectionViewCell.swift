@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
 class RestaurantCollectionViewCell: UICollectionViewCell {
     
@@ -33,8 +35,10 @@ class RestaurantCollectionViewCell: UICollectionViewCell {
     
     private func configureUI() {
         if let _ = self.business {
+            // Business name
             self.titleLabel.text = self.business!.name ?? ""
             
+            // Business Category
             var categoryString: String = ""
             
             for category in business!.categories {
@@ -42,6 +46,15 @@ class RestaurantCollectionViewCell: UICollectionViewCell {
             }
             
             self.detailLabel.text = categoryString
+            
+            // Business Image
+            if let imageURL = business!.imageURL {
+                Alamofire.request(imageURL).responseImage { response in
+                    if let image = response.result.value {
+                        self.previewImageView.image = image
+                    }
+                }
+            }
         }
     }
 }
