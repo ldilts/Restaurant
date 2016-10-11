@@ -11,6 +11,8 @@ import UIKit
 class RestaurantDetailTitleTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
     
     var business: Business! {
         didSet {
@@ -29,6 +31,9 @@ class RestaurantDetailTitleTableViewCell: UITableViewCell {
         super.prepareForReuse()
         
         self.business = nil
+        self.titleLabel.text = ""
+        self.ratingLabel.text = ""
+        self.categoryLabel.text = ""
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -44,6 +49,18 @@ class RestaurantDetailTitleTableViewCell: UITableViewCell {
             if let title = uBusiness.name {
                 self.titleLabel.text = title
             }
+            
+            if let rating = uBusiness.rating {
+                self.ratingLabel.text = "\(rating).0"
+            }
+            
+            var categoryString: String = ""
+            
+            for category in uBusiness.categories {
+                categoryString.append("\(category.title!) ")
+            }
+            
+            self.categoryLabel.text = categoryString
         }
     }
 

@@ -51,7 +51,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
-        self.tableView.estimatedRowHeight = 68.0
+        self.tableView.estimatedRowHeight = 110.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
         self.fetchReviews()
@@ -80,6 +80,10 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return section == 0 ? self.calculateNumberOfRows() : self.reviews.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return section == 0 ? nil : "Reviews"
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -131,12 +135,12 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     // MARK: - Table view delegate
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
+        if indexPath.section == 0 && cellTypesForDisplay.contains(.header) {
             let cellType: RestaurantDetailCellType = self.cellTypesForDisplay[indexPath.row]
             
             switch cellType {
             case .header: return (UIScreen.main.bounds.width * 9) / 16.0 // 16:9 ratio
-            case .title: return 68.0
+            case .title: return UITableViewAutomaticDimension
             case .address, .phone, .website: return 60.0
             }
         }
