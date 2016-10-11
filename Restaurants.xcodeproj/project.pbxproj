@@ -200,9 +200,9 @@
 				86FE88DD1DAAE823006260AE /* WelcomeViewController.swift */,
 				86FE88DF1DAAE841006260AE /* PermissionPrimingViewController.swift */,
 				86D237491DAC85A700DF8D40 /* FilterSearchTableViewController.swift */,
+				86D16A581DAD2B04003891EC /* FeaturedRestaurantsTableViewController.swift */,
 				86FE88CD1DAAA7F2006260AE /* Cells */,
 				86FE88D41DAAC2B8006260AE /* Custom Views */,
-				86D16A581DAD2B04003891EC /* FeaturedRestaurantsTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

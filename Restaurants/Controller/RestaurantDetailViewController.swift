@@ -33,7 +33,14 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     
     var cellTypesForDisplay: [RestaurantDetailCellType] = [RestaurantDetailCellType]()
     
-    var business: Business!
+    var business: Business! {
+        didSet {
+            if let uTableView = self.tableView {
+                uTableView.reloadData()
+            }
+        }
+    }
+    
     var reviews: [Review] = [Review]()
     
     // MARK: - Life cycle
@@ -41,6 +48,9 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        
         if let business = self.business {
             
             RequestFactory.request(forType: .Reviews)?
@@ -55,6 +65,12 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
                         }
                 })
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -100,7 +116,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
                     
                 case .address, .phone, .website:
                     
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "",
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantDetailActionCell",
                                                              for: indexPath) as! RestaurantDetailActionTableViewCell
                     cell.business = uBusiness
                     cell.actionType = cellType

@@ -59,6 +59,10 @@ class FeaturedRestaurantsTableViewController: UITableViewController {
     
     // MARK: - Table view delegate
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 84.0
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedBusiness = self.businesses[indexPath.row]
         self.performSegue(withIdentifier: "RestaurantDetailSegue", sender: self)

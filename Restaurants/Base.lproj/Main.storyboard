@@ -67,7 +67,7 @@
                             <tableViewSection headerTitle="Search Options" id="zlu-ij-96e">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="SJE-ft-FTe">
-                                        <rect key="frame" x="0.0" y="120" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="119.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SJE-ft-FTe" id="2pD-s8-Yjx">
                                             <frame key="frameInset" width="375" height="43"/>
@@ -102,7 +102,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="zUS-fk-I2j">
-                                        <rect key="frame" x="0.0" y="164" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="163.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zUS-fk-I2j" id="3ko-aY-IHz">
                                             <frame key="frameInset" width="375" height="43"/>
@@ -139,7 +139,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="OO5-3f-Gm6">
-                                        <rect key="frame" x="0.0" y="208" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="207.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OO5-3f-Gm6" id="GTF-hG-Mzw">
                                             <frame key="frameInset" width="375" height="43"/>
@@ -186,7 +186,6 @@
         <!--Restaurant Detail View Controller-->
         <scene sceneID="gy6-gx-hU2">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2wt-Ax-LZX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="97p-7q-udt" customClass="RestaurantDetailViewController" customModule="Restaurants" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RHF-SX-poE"/>
@@ -308,6 +307,7 @@
                         <outlet property="tableView" destination="qqn-RL-pU4" id="6VR-3y-g2t"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2wt-Ax-LZX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2742" y="938"/>
         </scene>
@@ -569,10 +569,10 @@
             </objects>
             <point key="canvasLocation" x="1808.8" y="134.48275862068968"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Featured Restaurants Table View Controller-->
         <scene sceneID="irf-Ag-zxj">
             <objects>
-                <tableViewController id="8MW-bv-C82" sceneMemberID="viewController">
+                <tableViewController id="8MW-bv-C82" customClass="FeaturedRestaurantsTableViewController" customModule="Restaurants" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="a6Y-6K-LO1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -611,7 +611,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Ht7-Mj-NCH"/>
+        <segue reference="lEa-TU-XrD"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.1764705882352941" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
 </document>

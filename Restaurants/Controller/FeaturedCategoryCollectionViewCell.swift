@@ -8,10 +8,14 @@
 
 import UIKit
 
+
+
 class FeaturedCategoryCollectionViewCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var featuredRestaurantsCollectionView: UICollectionView!
     @IBOutlet weak var gradientBackgroundView: UIView!
+    
+    weak var navigationDelegate: NavigationDelegate?
     
     var featuredSections: [FeaturedSection]! {
         didSet {
@@ -82,6 +86,8 @@ class FeaturedCategoryCollectionViewCell: UICollectionViewCell, UICollectionView
     // MARK: - UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedFeaturedSection = self.featuredSections[indexPath.row]
+        self.navigationDelegate?.featuredSectionTapped(selectedFeaturedSection)
     }
     
     // MARK: - Collection view flow layout delegate

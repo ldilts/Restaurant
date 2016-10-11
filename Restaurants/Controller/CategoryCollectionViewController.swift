@@ -12,7 +12,12 @@ import CoreLocation
 
 private let reuseIdentifier = "CategoryCell"
 
-class CategoryCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate {
+protocol NavigationDelegate: class {
+    func featuredSectionTapped(_ featuredSection: FeaturedSection)
+    func restaurantTapped(_ restaurant: Business)
+}
+
+class CategoryCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, CLLocationManagerDelegate, NavigationDelegate {
     
     var featuredSections: [FeaturedSection] = [FeaturedSection]()
     
@@ -20,6 +25,9 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
     
     private let locationManager = CLLocationManager()
     private let refreshControl: UIRefreshControl = UIRefreshControl()
+    
+    private var selectedFeaturedSection: FeaturedSection?
+    private var selectedRestaurant: Business?
     
     private var latestLocation: CLLocation? {
         didSet {
@@ -109,6 +117,7 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
             
             // Configure the cell
             cell.featuredSections = featuredSections
+            cell.navigationDelegate = self
             
             return cell
         }
@@ -117,6 +126,7 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
         
         // Configure the cell
         cell.businesses = suggestedSections[indexPath.section - 1].businesses
+        cell.navigationDelegate = self
         
         return cell
     }
@@ -184,6 +194,18 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.latestLocation = locations[0]
         self.locationManager.stopUpdatingLocation()
+    }
+    
+    // MARK: - Navigation Delegate
+    
+    func featuredSectionTapped(_ featuredSection: FeaturedSection) {
+        self.selectedFeaturedSection = featuredSection
+        self.performSegue(withIdentifier: "FeaturedRestaurantsSegue", sender: self)
+    }
+    
+    func restaurantTapped(_ restaurant: Business) {
+        self.selectedRestaurant = restaurant
+        self.performSegue(withIdentifier: "RestaurantDetailSegue", sender: self)
     }
     
     // MARK: - Actions
@@ -262,11 +284,11 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
             if identifier == "FeaturedRestaurantsSegue" {
                 let destinationViewController = segue.destination as! FeaturedRestaurantsTableViewController
                 
-//                destinationViewController.businesses = TODO: send businesses
+                destinationViewController.businesses = self.selectedFeaturedSection?.businesses
             } else if identifier == "RestaurantDetailSegue" {
                 let destinationViewController = segue.destination as! RestaurantDetailViewController
                 
-//                destinationViewController.business = TODO: send selected business
+                destinationViewController.business = self.selectedRestaurant
             }
         }
         

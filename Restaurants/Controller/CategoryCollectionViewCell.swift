@@ -18,6 +18,8 @@ class CategoryCollectionViewCell: UICollectionViewCell, UICollectionViewDataSour
         }
     }
     
+    weak var navigationDelegate: NavigationDelegate?
+    
     // MARK: - Life cycle
     
     override func awakeFromNib() {
@@ -63,7 +65,8 @@ class CategoryCollectionViewCell: UICollectionViewCell, UICollectionViewDataSour
     // MARK: - UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        NSLog("\nTapped: \(self.businesses[indexPath.row].name!)\n")
+        let selectedBusiness = self.businesses[indexPath.row]
+        self.navigationDelegate?.restaurantTapped(selectedBusiness)
     }
     
     // MARK: - Collection view flow layout delegate

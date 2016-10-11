@@ -139,7 +139,7 @@ class RestaurantsTableViewController: UITableViewController, CLLocationManagerDe
             if self.selectedAutocompleteBusiness != nil
                 || self.selectedAutocompleteCategory != nil {
                 // Show business
-                let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantSearchResult",
+                let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantTableViewCell",
                                                          for: indexPath) as! RestaurantTableViewCell
                 cell.business = businesses[indexPath.row]
                 
