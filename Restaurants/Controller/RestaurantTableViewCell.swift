@@ -1,16 +1,16 @@
 //
-//  SearchResultRestaurantTableViewCell.swift
+//  RestaurantTableViewCell.swift
 //  Restaurants
 //
-//  Created by Lucas Dilts on 2016-10-10.
+//  Created by Lucas Dilts on 2016-10-11.
 //  Copyright © 2016 Lucas Dilts. All rights reserved.
 //
 
 import UIKit
 import AlamofireImage
 
-class SearchResultRestaurantTableViewCell: UITableViewCell {
-    
+class RestaurantTableViewCell: UITableViewCell {
+
     @IBOutlet weak var previewImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -21,18 +21,18 @@ class SearchResultRestaurantTableViewCell: UITableViewCell {
     }
     
     // MARK: - Life cycle
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
     // MARK: - Helper Methods
     
     private func configureUI() {
@@ -58,4 +58,5 @@ class SearchResultRestaurantTableViewCell: UITableViewCell {
             }
         }
     }
+
 }

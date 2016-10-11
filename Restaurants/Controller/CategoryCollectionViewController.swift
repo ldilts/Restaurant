@@ -252,14 +252,24 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
         NotificationCenter.default.post(name: notificationName, object: nil)
     }
     
-    /*
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using [segue destinationViewController].
      // Pass the selected object to the new view controller.
+        if let identifier = segue.identifier {
+            if identifier == "FeaturedRestaurantsSegue" {
+                let destinationViewController = segue.destination as! FeaturedRestaurantsTableViewController
+                
+//                destinationViewController.businesses = TODO: send businesses
+            } else if identifier == "RestaurantDetailSegue" {
+                let destinationViewController = segue.destination as! RestaurantDetailViewController
+                
+//                destinationViewController.business = TODO: send selected business
+            }
+        }
+        
      }
-     */
 
 }

@@ -58,6 +58,10 @@ class RestaurantsTableViewController: UITableViewController, CLLocationManagerDe
         
         self.tableView.tableHeaderView = self.resultSearchController.searchBar
         
+        // Register cell
+        let nib: UINib = UINib(nibName: "RestaurantTableViewCell", bundle: nil)
+        self.tableView.register(nib, forCellReuseIdentifier: "RestaurantTableViewCell")
+        
         // get user location is permitted
         if CLLocationManager.locationServicesEnabled() {
             self.locationManager.delegate = self
@@ -136,7 +140,7 @@ class RestaurantsTableViewController: UITableViewController, CLLocationManagerDe
                 || self.selectedAutocompleteCategory != nil {
                 // Show business
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantSearchResult",
-                                                         for: indexPath) as! SearchResultRestaurantTableViewCell
+                                                         for: indexPath) as! RestaurantTableViewCell
                 cell.business = businesses[indexPath.row]
                 
                 return cell
@@ -193,7 +197,7 @@ class RestaurantsTableViewController: UITableViewController, CLLocationManagerDe
                 || self.selectedAutocompleteCategory != nil {
                 // Business selected
                 self.selectedBusiness = self.businesses[indexPath.row]
-                self.performSegue(withIdentifier: "businessDetailSegue", sender: self)
+                self.performSegue(withIdentifier: "RestaurantDetailSegue", sender: self)
 
             } else {
                 // Autocomplete suggestion selected
@@ -322,7 +326,7 @@ class RestaurantsTableViewController: UITableViewController, CLLocationManagerDe
         if let identifier = segue.identifier {
             
             switch identifier {
-            case "businessDetailSegue":
+            case "RestaurantDetailSegue":
                 if let destinationViewController = segue.destination
                     as? RestaurantDetailViewController {
                     

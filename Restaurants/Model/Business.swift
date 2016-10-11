@@ -24,6 +24,7 @@ class Business: NSObject {
     var coordinates: Coordinates!
     var imageURL: String!
     var location: Location!
+    var address: String!
     
     
     init(withJSON json: JSON) {
