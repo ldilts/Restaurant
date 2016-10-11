@@ -13,6 +13,7 @@ import SwiftyJSON
 class Review: NSObject {
     var rating: Int!
     var text: String!
+    var user: User!
 
     init(withJSON json: JSON) {
         if let rating = json["rating"].int {
@@ -21,6 +22,10 @@ class Review: NSObject {
         
         if let text = json["text"].string {
             self.text = text
+        }
+        
+        if let user = json["user"].dictionaryObject  {
+            self.user = User(withDictionary: user)
         }
     }
 }

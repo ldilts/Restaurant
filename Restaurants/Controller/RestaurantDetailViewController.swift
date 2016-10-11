@@ -51,20 +51,10 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
-        if let business = self.business {
-            
-            RequestFactory.request(forType: .Reviews)?
-                .fetchResults(usingParameters: nil,
-                         andID: business.id!,
-                         andCompletion: { (result) in
-                            
-                        if (result != nil) {
-                            if let reviews = result as? [Review] {
-                                self.reviews = reviews
-                            }
-                        }
-                })
-        }
+        self.tableView.estimatedRowHeight = 68.0
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        
+        self.fetchReviews()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -89,7 +79,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? self.calculateNumberOfRows() : 0
+        return section == 0 ? self.calculateNumberOfRows() : self.reviews.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -126,6 +116,10 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
                 
             } else {
                 // Review row
+                let cell = tableView.dequeueReusableCell(withIdentifier: "RestaurantDetailReviewCell",
+                                                         for: indexPath) as! RestaurantDetailReviewTableViewCell
+                cell.review = self.reviews[indexPath.row]
+                return cell
             }
         }
         
@@ -147,7 +141,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
             }
         }
         
-        return 44.0
+        return UITableViewAutomaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -155,6 +149,25 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     }
     
     // MARK: - Helper Methods
+    
+    private func fetchReviews() {
+        if let business = self.business {
+            
+            RequestFactory.request(forType: .Reviews)?
+                .fetchResults(usingParameters: nil,
+                              andID: business.id!,
+                              andCompletion: { (result) in
+                                
+                                if (result != nil) {
+                                    if let reviews = result as? [Review] {
+                                        self.reviews = reviews
+                                        
+                                        self.tableView.reloadData()
+                                    }
+                                }
+                })
+        }
+    }
     
     private func calculateNumberOfRows() -> Int {
         var numberOfRows: Int = 0

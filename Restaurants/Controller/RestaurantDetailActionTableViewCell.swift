@@ -21,11 +21,11 @@ class RestaurantDetailActionTableViewCell: UITableViewCell {
         }
     }
     
-    // Titles
+    // Images
     
-    private let addressTitle: String = "Address"
-    private let phoneTitle: String = "Phone"
-    private let websiteTitle: String = "Website"
+    private let addressImageName: String = "Share Button Icon"
+    private let phoneImageName: String = "Phone Button Icon"
+    private let websiteImageName: String = "Web Button Icon"
     
     // MARK: - Life cycle
     
@@ -52,18 +52,29 @@ class RestaurantDetailActionTableViewCell: UITableViewCell {
     // MARK: - Helper Methods
     
     private func configureUI() {
-        if let uActionType = self.actionType {
-            switch uActionType {
-            case .address:
-                self.titleLabel.text = addressTitle
-                break
-            case .phone:
-                self.titleLabel.text = phoneTitle
-                break
-            case .website:
-                self.titleLabel.text = websiteTitle
-                break
-            default: break // Type not supported
+        if let uBusiness = self.business {
+            if let uActionType = self.actionType {
+                switch uActionType {
+                case .address:
+                    self.titleLabel.text = uBusiness.location!.address1 ?? ""
+                    if let image = UIImage(named: addressImageName) {
+                        self.actionButton.setImage(image, for: .normal)
+                    }
+                    break
+                case .phone:
+                    self.titleLabel.text = uBusiness.phone ?? ""
+                    if let image = UIImage(named: phoneImageName) {
+                        self.actionButton.setImage(image, for: .normal)
+                    }
+                    break
+                case .website:
+                    self.titleLabel.text = "Business Website"
+                    if let image = UIImage(named: websiteImageName) {
+                        self.actionButton.setImage(image, for: .normal)
+                    }
+                    break
+                default: break // Type not supported
+                }
             }
         }
     }

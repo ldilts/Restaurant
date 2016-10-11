@@ -28,11 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let initialViewController: UIViewController!
         
-        if UserDefaults.standard.bool(forKey: "OnboardComplete") {
-            initialViewController = storyboard.instantiateViewController(withIdentifier: "MainViewController")
-        } else {
+//        if UserDefaults.standard.bool(forKey: "OnboardComplete") {
+//            initialViewController = storyboard.instantiateViewController(withIdentifier: "MainViewController")
+//        } else {
             initialViewController = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController")
-        }
+//        }
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         

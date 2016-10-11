@@ -209,6 +209,7 @@ enum Router: URLRequestConvertible {
         
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         urlRequest.httpMethod = method.rawValue
+        // TODO: Unwrap token safely 
         urlRequest.setValue("Bearer \(YelpAPIManager.sharedInstance.token!)", forHTTPHeaderField: "Authorization")
         
         switch self {
