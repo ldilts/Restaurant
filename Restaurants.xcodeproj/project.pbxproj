@@ -29,6 +29,9 @@
 		86D2373E1DAC05D300DF8D40 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2373D1DAC05D300DF8D40 /* UIColor+Extension.swift */; };
 		86D237401DAC060200DF8D40 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2373F1DAC060200DF8D40 /* UIView+Extension.swift */; };
 		86D237421DAC19B200DF8D40 /* SearchResultRestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D237411DAC19B200DF8D40 /* SearchResultRestaurantTableViewCell.swift */; };
+		86D237461DAC77AA00DF8D40 /* SearchResultHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D237451DAC77AA00DF8D40 /* SearchResultHeaderView.swift */; };
+		86D237481DAC77C100DF8D40 /* SearchResultHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86D237471DAC77C100DF8D40 /* SearchResultHeaderView.xib */; };
+		86D2374A1DAC85A700DF8D40 /* FilterSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D237491DAC85A700DF8D40 /* FilterSearchTableViewController.swift */; };
 		86FE88C81DA857A4006260AE /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FE88C71DA857A4006260AE /* Category.swift */; };
 		86FE88CC1DAAA7EE006260AE /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FE88CB1DAAA7EE006260AE /* CategoryCollectionViewCell.swift */; };
 		86FE88CF1DAAABB3006260AE /* CategoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FE88CE1DAAABB3006260AE /* CategoryCollectionViewController.swift */; };
@@ -69,6 +72,9 @@
 		86D2373D1DAC05D300DF8D40 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		86D2373F1DAC060200DF8D40 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		86D237411DAC19B200DF8D40 /* SearchResultRestaurantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultRestaurantTableViewCell.swift; path = Controller/SearchResultRestaurantTableViewCell.swift; sourceTree = "<group>"; };
+		86D237451DAC77AA00DF8D40 /* SearchResultHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResultHeaderView.swift; path = Controller/SearchResultHeaderView.swift; sourceTree = "<group>"; };
+		86D237471DAC77C100DF8D40 /* SearchResultHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchResultHeaderView.xib; path = View/SearchResultHeaderView.xib; sourceTree = "<group>"; };
+		86D237491DAC85A700DF8D40 /* FilterSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterSearchTableViewController.swift; path = Controller/FilterSearchTableViewController.swift; sourceTree = "<group>"; };
 		86FE88C71DA857A4006260AE /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Category.swift; path = Model/Category.swift; sourceTree = "<group>"; };
 		86FE88CB1DAAA7EE006260AE /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryCollectionViewCell.swift; path = Controller/CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		86FE88CE1DAAABB3006260AE /* CategoryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryCollectionViewController.swift; path = Controller/CategoryCollectionViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +191,7 @@
 				86FE88DF1DAAE841006260AE /* PermissionPrimingViewController.swift */,
 				86FE88CD1DAAA7F2006260AE /* Cells */,
 				86FE88D41DAAC2B8006260AE /* Custom Views */,
+				86D237491DAC85A700DF8D40 /* FilterSearchTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -194,6 +201,7 @@
 			children = (
 				86D2372F1DABC65500DF8D40 /* FeaturedCategoryCollectionViewCell.xib */,
 				86D237311DABD36600DF8D40 /* FeaturedRestaurantsCollectionViewCell.xib */,
+				86D237471DAC77C100DF8D40 /* SearchResultHeaderView.xib */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -214,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				86FE88D51DAAC301006260AE /* CategoryHeaderCollectionReusableView.swift */,
+				86D237451DAC77AA00DF8D40 /* SearchResultHeaderView.swift */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -295,6 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86D237481DAC77C100DF8D40 /* SearchResultHeaderView.xib in Resources */,
 				86D237301DABC65500DF8D40 /* FeaturedCategoryCollectionViewCell.xib in Resources */,
 				86A639C31DA6F042009046ED /* LaunchScreen.storyboard in Resources */,
 				86A639C01DA6F042009046ED /* Assets.xcassets in Resources */,
@@ -368,6 +378,7 @@
 				8669B36A1DA81A27005CF1A4 /* Coordinates.swift in Sources */,
 				86FE88D11DAAADED006260AE /* RestaurantCollectionViewCell.swift in Sources */,
 				86FE88CF1DAAABB3006260AE /* CategoryCollectionViewController.swift in Sources */,
+				86D237461DAC77AA00DF8D40 /* SearchResultHeaderView.swift in Sources */,
 				86FE88CC1DAAA7EE006260AE /* CategoryCollectionViewCell.swift in Sources */,
 				86FE88D81DAAC5CC006260AE /* InitialState.swift in Sources */,
 				8669B3721DA83140005CF1A4 /* Review.swift in Sources */,
@@ -376,6 +387,7 @@
 				86A639B61DA6F042009046ED /* AppDelegate.swift in Sources */,
 				86D2373E1DAC05D300DF8D40 /* UIColor+Extension.swift in Sources */,
 				86288E771DA7F1A0003A87D2 /* Business.swift in Sources */,
+				86D2374A1DAC85A700DF8D40 /* FilterSearchTableViewController.swift in Sources */,
 				86A639D21DA6FB88009046ED /* YelpAPIManager.swift in Sources */,
 				86FE88D61DAAC301006260AE /* CategoryHeaderCollectionReusableView.swift in Sources */,
 				86A639BE1DA6F042009046ED /* Restaurants.xcdatamodeld in Sources */,

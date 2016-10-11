@@ -13,7 +13,6 @@ class SearchResultRestaurantTableViewCell: UITableViewCell {
     
     @IBOutlet weak var previewImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var detailLabel: UILabel!
     
     var business: Business! {
         didSet {
@@ -57,9 +56,6 @@ class SearchResultRestaurantTableViewCell: UITableViewCell {
             for category in business!.categories {
                 categoryString.append("\(category.title!) ")
             }
-            
-            self.detailLabel.text = categoryString
-            
         }
     }
 }

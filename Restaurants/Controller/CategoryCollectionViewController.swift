@@ -21,17 +21,20 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
     private let locationManager = CLLocationManager()
     private let refreshControl: UIRefreshControl = UIRefreshControl()
     
+    private var latestLocation: CLLocation? {
+        didSet {
+            if let _ = latestLocation {
+                self.refresh(sender: self)
+            }
+        }
+    }
+    
     // MARK: - Life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        // self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
+        // Register cell for reuse
         let nib: UINib = UINib(nibName: "FeaturedCategoryCollectionViewCell", bundle: nil)
         self.collectionView?.register(nib, forCellWithReuseIdentifier: "FeaturedCategoryCell")
         
@@ -179,8 +182,7 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
     // MARK: - Location manager delegate
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // TODO: update with new location!
-        
+        self.latestLocation = locations[0]
         self.locationManager.stopUpdatingLocation()
     }
     
@@ -188,10 +190,6 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
     
     func refresh(_ sender: Any) {
         self.refreshControl.beginRefreshing()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            self.locationManager.startUpdatingLocation()
-        }
         
         // Fetch data for the featured category rows
         for (index, featuredSection) in self.featuredSections.enumerated() {
@@ -224,21 +222,9 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
             var parameters: Parameters = [
                 "term": suggestedSection.title]
             
-            if CLLocationManager.locationServicesEnabled() {
-                if let location = self.locationManager.location {
-                    parameters["latitude"] = location.coordinate.latitude
-                    parameters["longitute"] = location.coordinate.longitude
-                    
-                    print("\n Lat: \(location.coordinate.latitude)\n")
-                    print("\n Lon: \(location.coordinate.longitude)\n")
-                } else {
-                    parameters["location"] = "Toronto"
-                }
-                
-                // If this is the last query, stop updating user location
-                if index == self.suggestedSections.count - 1 {
-                    self.locationManager.stopUpdatingLocation()
-                }
+            if CLLocationManager.locationServicesEnabled() && latestLocation != nil {
+                parameters["latitude"] = latestLocation!.coordinate.latitude
+                parameters["longitude"] = latestLocation!.coordinate.longitude
             } else {
                 parameters["location"] = "Toronto"
             }
@@ -255,9 +241,7 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
                     }
                 }
                 
-                if index == self.suggestedSections.count - 1 {
-                    self.refreshControl.endRefreshing()
-                }
+                self.refreshControl.endRefreshing()
             })
         }
     }
