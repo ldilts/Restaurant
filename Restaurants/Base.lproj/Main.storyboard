@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Restaurants Table View Controller-->
+        <!--Search-->
         <scene sceneID="elk-Pn-hQm">
             <objects>
                 <tableViewController id="9lx-d5-mmQ" customClass="RestaurantsTableViewController" customModule="Restaurants" customModuleProvider="target" sceneMemberID="viewController">
@@ -30,7 +30,7 @@
                             <outlet property="delegate" destination="9lx-d5-mmQ" id="ol0-8Q-krU"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="yYf-5I-MfB">
+                    <navigationItem key="navigationItem" title="Search" id="yYf-5I-MfB">
                         <barButtonItem key="leftBarButtonItem" title="Filter" id="l6y-AG-Eeq">
                             <connections>
                                 <action selector="filterButtonTapped:" destination="9lx-d5-mmQ" id="OQ6-99-INy"/>
@@ -307,6 +307,9 @@
                                                         <constraint firstAttribute="width" secondItem="SXQ-PA-hgp" secondAttribute="height" multiplier="1:1" id="cre-CM-ZxC"/>
                                                         <constraint firstAttribute="width" constant="44" id="flz-fF-8HW"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <action selector="actionButtonTapped:" destination="GTb-yz-MEW" eventType="touchUpInside" id="vcc-8U-h1h"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -675,7 +678,7 @@
             </objects>
             <point key="canvasLocation" x="902" y="938"/>
         </scene>
-        <!--Category Collection View Controller-->
+        <!--Discover-->
         <scene sceneID="ZVM-OB-xMm">
             <objects>
                 <collectionViewController id="V0o-sa-bxG" customClass="CategoryCollectionViewController" customModule="Restaurants" customModuleProvider="target" sceneMemberID="viewController">
@@ -814,7 +817,7 @@
                             <outlet property="delegate" destination="V0o-sa-bxG" id="kpM-u0-iw9"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="e7y-nq-jH2">
+                    <navigationItem key="navigationItem" title="Discover" id="e7y-nq-jH2">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="TVU-4c-Knb">
                             <connections>
                                 <action selector="searchButtonTapped:" destination="V0o-sa-bxG" id="1ci-gs-lSp"/>
@@ -855,7 +858,7 @@
         <scene sceneID="pgx-gi-KZ8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="523-0r-NJ8" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Discover" id="YjO-Er-bs9"/>
+                    <tabBarItem key="tabBarItem" title="Discover" image="Discover Icon" id="YjO-Er-bs9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Skb-6V-5Vt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -872,13 +875,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Discover Icon" width="22" height="22"/>
         <image name="Filter Icon" width="48" height="48"/>
         <image name="Location Icon" width="48" height="48"/>
         <image name="Search Icon" width="48" height="48"/>
         <image name="Star Icon" width="14" height="13"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="43w-4R-gIu"/>
+        <segue reference="Ht7-Mj-NCH"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.1764705882352941" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
 </document>

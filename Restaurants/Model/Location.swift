@@ -18,32 +18,32 @@ class Location: NSObject {
     var country: String!
     var zipCode: String!
     
-    init(withJSON json: JSON) {
-        if let address1 = json["address1"].string {
+    init(withDictionary dictionary: [String: Any]) {
+        if let address1 = dictionary["address1"] as? String {
             self.address1 = address1
         }
         
-        if let address2 = json["address2"].string {
+        if let address2 = dictionary["address2"] as? String {
             self.address2 = address2
         }
         
-        if let address3 = json["address3"].string {
+        if let address3 = dictionary["address3"] as? String {
             self.address3 = address3
         }
         
-        if let city = json["city"].string {
+        if let city = dictionary["city"] as? String {
             self.city = city
         }
         
-        if let state = json["state"].string {
+        if let state = dictionary["state"] as? String {
             self.state = state
         }
         
-        if let country = json["country"].string {
+        if let country = dictionary["country"] as? String {
             self.country = country
         }
         
-        if let zipCode = json["zip_code"].string {
+        if let zipCode = dictionary["zip_code"] as? String {
             self.zipCode = zipCode
         }
     }

@@ -19,6 +19,8 @@ class TabBarViewController: UITabBarController {
         let notificationName = Notification.Name("JumpToSearchNotification")
         
         NotificationCenter.default.addObserver(self, selector: #selector(TabBarViewController.jumpToSearch), name: notificationName, object: nil)
+        
+        self.tabBar.tintColor = UIColor(red: (255.0/255.0), green: (45.0/255.0), blue: (85.0/255.0), alpha: 1.0)
     }
     
     deinit {

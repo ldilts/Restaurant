@@ -55,6 +55,7 @@ class RestaurantsTableViewController: UITableViewController, CLLocationManagerDe
         self.resultSearchController.searchBar.sizeToFit()
         self.resultSearchController.searchBar.scopeButtonTitles = ["All", "Hot & New", "Deals"]
         self.resultSearchController.searchBar.delegate = self
+        self.resultSearchController.searchBar.tintColor = UIColor(red: (255.0/255.0), green: (45.0/255.0), blue: (85.0/255.0), alpha: 1.0)
         
         self.tableView.tableHeaderView = self.resultSearchController.searchBar
         

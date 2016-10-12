@@ -74,8 +74,8 @@ class Business: NSObject {
             self.imageURL = imageURL
         }
         
-        if let location = json["location"].object as? JSON {
-            self.location = Location(withJSON: location)
+        if let location = json["location"].dictionaryObject {
+            self.location = Location(withDictionary: location)
         }
         
         if let photos = json["photos"].arrayObject {

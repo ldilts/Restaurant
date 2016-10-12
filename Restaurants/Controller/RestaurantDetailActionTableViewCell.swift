@@ -49,6 +49,26 @@ class RestaurantDetailActionTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    // MARK: - Actions
+    
+    @IBAction func actionButtonTapped(_ sender: UIButton) {
+        if let uBusiness = business {
+            if let cellType = self.actionType {
+                switch cellType {
+                case .address: break
+                case .phone:
+                    let phone = "tel://\(uBusiness.phone!)"
+                    UIApplication.shared.open(URL(string: phone)!, options: [:], completionHandler: nil)
+                    break
+                case .website:
+                    UIApplication.shared.open(uBusiness.url, options: [:], completionHandler: nil)
+                    break
+                default: break
+                }
+            }
+        }
+    }
+    
     // MARK: - Helper Methods
     
     private func configureUI() {

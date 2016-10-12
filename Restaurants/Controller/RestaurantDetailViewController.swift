@@ -22,9 +22,9 @@ typealias Tag = Int
 enum RestaurantDetailCellType: Tag {
     case header = 1
     case title = 2
-    case address = 3
-    case phone = 4
-    case website = 5
+    case phone = 3
+    case website = 4
+    case address = 5
 }
 
 class RestaurantDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -150,7 +150,25 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: implement
+        if let uBusiness = self.business {
+            if indexPath.section == 0 {
+                let cellType = self.cellTypesForDisplay[indexPath.row]
+                
+                switch cellType {
+                case .address: break
+                case .phone:
+                    let phone = "tel://\(uBusiness.phone!)"
+                    UIApplication.shared.open(URL(string: phone)!, options: [:], completionHandler: nil)
+                    break
+                case .website:
+                    UIApplication.shared.open(uBusiness.url, options: [:], completionHandler: nil)
+                    break
+                default: break
+                }
+            }
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // MARK: - Helper Methods
@@ -206,13 +224,6 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
                 self.cellTypesForDisplay.append(.title)
             }
             
-            if let location = uBusiness.location {
-                if let _ = location.address1 {
-                    numberOfRows += 1
-                    self.cellTypesForDisplay.append(.address)
-                }
-            }
-            
             if let _ = uBusiness.phone {
                 numberOfRows += 1
                 self.cellTypesForDisplay.append(.phone)
@@ -221,6 +232,13 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
             if let _ = uBusiness.url {
                 numberOfRows += 1
                 self.cellTypesForDisplay.append(.website)
+            }
+            
+            if let location = uBusiness.location {
+                if let _ = location.address1 {
+                    numberOfRows += 1
+                    self.cellTypesForDisplay.append(.address)
+                }
             }
         }
         
