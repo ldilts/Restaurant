@@ -54,6 +54,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         self.tableView.estimatedRowHeight = 110.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
+        self.fetchPhotos()
         self.fetchReviews()
     }
     
@@ -170,6 +171,23 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
                                     }
                                 }
                 })
+        }
+    }
+    
+    private func fetchPhotos() {
+        if let uBusiness = self.business {
+            
+            RequestFactory.request(forType: .Business)?.fetchResults(usingParameters: nil, andID: uBusiness.id!, andCompletion: { (result) in
+                
+                if (result != nil) {
+                    if let updatedBusiness = result as? Business {
+                        self.business = updatedBusiness
+                        
+                        self.tableView.reloadData()
+                    }
+                }
+            })
+            
         }
     }
     

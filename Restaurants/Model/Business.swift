@@ -25,6 +25,7 @@ class Business: NSObject {
     var imageURL: String!
     var location: Location!
     var address: String!
+    var photos: [String] = [String]()
     
     
     init(withJSON json: JSON) {
@@ -75,6 +76,14 @@ class Business: NSObject {
         
         if let location = json["location"].object as? JSON {
             self.location = Location(withJSON: location)
+        }
+        
+        if let photos = json["photos"].arrayObject {
+            for photo in photos {
+                if let imageURL = photo as? String {
+                    self.photos.append(imageURL)
+                }
+            }
         }
     }
 

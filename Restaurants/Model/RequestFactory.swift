@@ -96,8 +96,29 @@ class ReviewsRequest: Request {
 }
 
 class BusinessRequest: Request {
-    func fetchResults(usingParameters parameters: [String : Any]?, andID: String?, andCompletion completion: @escaping (Any?) -> Void) {
-        completion(nil) // TODO: Implement business request
+    func fetchResults(usingParameters parameters: [String : Any]?, andID id: String?, andCompletion completion: @escaping (Any?) -> Void) {
+        
+        guard let _ : String = id else {
+            NSLog("Error: ID is required for review request")
+            return
+        }
+        
+        Alamofire.request(Router.business(id: id!)).responseJSON { (response) in
+            guard response.result.isSuccess else {
+                NSLog("Error calling GET on /businesses/{id}")
+                NSLog("\(response.result.error!)")
+                completion(nil)
+                return
+            }
+            
+            if let value = response.result.value {
+                let json = JSON(value)
+                
+                completion(Business(withJSON: json))
+            }
+            
+            completion(nil)
+        }
     }
 }
 
@@ -172,7 +193,7 @@ class RequestFactory {
         case .Search: return SearchRequest()
         case .Reviews: return ReviewsRequest()
         case .Autocomplete: return AutocompleteRequest()
-        default: return nil
+        case .Business: return BusinessRequest()
         }
     }
 }
@@ -185,13 +206,14 @@ enum Router: URLRequestConvertible {
     case search(parameters: Parameters, page: Int)
     case reviews(id: String)
     case autocomplete(parameters: Parameters)
+    case business(id: String)
     
     static let baseURLString = "https://api.yelp.com/v3"
     static let perPage = 10
     
     var method: HTTPMethod {
         switch self {
-        case .search, .reviews, .autocomplete:
+        case .search, .reviews, .autocomplete, .business:
             return .get
         }
     }
@@ -201,6 +223,7 @@ enum Router: URLRequestConvertible {
         case .search: return "/businesses/search"
         case .reviews(let id): return "/businesses/\(id)/reviews"
         case .autocomplete: return "/autocomplete"
+        case .business(let id): return "/businesses/\(id)"
         }
     }
     

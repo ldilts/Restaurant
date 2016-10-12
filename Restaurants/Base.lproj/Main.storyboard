@@ -205,17 +205,23 @@
                                             <frame key="frameInset" width="375" height="211"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cIO-dc-1mF"/>
+                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NeF-EP-PtZ">
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                </scrollView>
+                                                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="g59-3E-XmS"/>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="cIO-dc-1mF" firstAttribute="top" secondItem="i06-su-YGk" secondAttribute="top" id="Y9I-f0-Obf"/>
-                                                <constraint firstAttribute="trailing" secondItem="cIO-dc-1mF" secondAttribute="trailing" id="tgV-tX-td1"/>
-                                                <constraint firstItem="cIO-dc-1mF" firstAttribute="leading" secondItem="i06-su-YGk" secondAttribute="leading" id="vme-Cs-URN"/>
-                                                <constraint firstAttribute="bottom" secondItem="cIO-dc-1mF" secondAttribute="bottom" id="yT0-BQ-FBi"/>
+                                                <constraint firstItem="NeF-EP-PtZ" firstAttribute="leading" secondItem="i06-su-YGk" secondAttribute="leading" id="SQ7-aQ-0dZ"/>
+                                                <constraint firstItem="g59-3E-XmS" firstAttribute="centerX" secondItem="i06-su-YGk" secondAttribute="centerX" id="aao-6H-56A"/>
+                                                <constraint firstAttribute="bottom" secondItem="g59-3E-XmS" secondAttribute="bottom" constant="8" id="bsQ-nP-WDB"/>
+                                                <constraint firstAttribute="bottom" secondItem="NeF-EP-PtZ" secondAttribute="bottom" id="c07-sZ-HQI"/>
+                                                <constraint firstAttribute="trailing" secondItem="NeF-EP-PtZ" secondAttribute="trailing" id="k6Y-vt-EXL"/>
+                                                <constraint firstItem="NeF-EP-PtZ" firstAttribute="top" secondItem="i06-su-YGk" secondAttribute="top" id="tbn-x9-Doc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="previewImageView" destination="cIO-dc-1mF" id="7lY-UQ-ejR"/>
+                                            <outlet property="pageControl" destination="g59-3E-XmS" id="XZI-O7-K00"/>
+                                            <outlet property="scrollView" destination="NeF-EP-PtZ" id="G9V-mu-qLb"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" tag="2" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RestaurantDetailTitleCell" rowHeight="110" id="nUQ-rU-z0O" customClass="RestaurantDetailTitleTableViewCell" customModule="Restaurants" customModuleProvider="target">
