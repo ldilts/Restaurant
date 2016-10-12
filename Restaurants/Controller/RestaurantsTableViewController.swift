@@ -225,6 +225,8 @@ class RestaurantsTableViewController: UITableViewController, CLLocationManagerDe
         } else {
             // TODO: Search history selected
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // MARK: - Location manager delegate

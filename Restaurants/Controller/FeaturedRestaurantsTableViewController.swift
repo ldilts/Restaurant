@@ -66,6 +66,8 @@ class FeaturedRestaurantsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedBusiness = self.businesses[indexPath.row]
         self.performSegue(withIdentifier: "RestaurantDetailSegue", sender: self)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     
