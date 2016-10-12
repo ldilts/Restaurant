@@ -32,6 +32,7 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
     private var latestLocation: CLLocation? {
         didSet {
             if let _ = latestLocation {
+                self.locationManager.stopUpdatingLocation()
                 self.refresh(sender: self)
             }
         }
@@ -193,7 +194,7 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.latestLocation = locations[0]
-        self.locationManager.stopUpdatingLocation()
+        print("\nLocation updated\n")
     }
     
     // MARK: - Navigation Delegate
@@ -218,7 +219,8 @@ class CategoryCollectionViewController: UICollectionViewController, UICollection
             
             let parameters: Parameters = [
                 "term": featuredSection.category!.alias!,
-                "location": featuredSection.location]
+                "location": featuredSection.location,
+                "sort_by": "rating"]
             
             RequestFactory.request(forType: .Search)?
                 .fetchResults(usingParameters: parameters,

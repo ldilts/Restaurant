@@ -38,6 +38,7 @@ class RestaurantsTableViewController: UITableViewController, CLLocationManagerDe
         didSet {
             if let _ = latestLocation {
                 // fetch with location
+                self.locationManager.stopUpdatingLocation()
             }
         }
     }
@@ -230,7 +231,6 @@ class RestaurantsTableViewController: UITableViewController, CLLocationManagerDe
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.latestLocation = locations[0]
-        self.locationManager.stopUpdatingLocation()
     }
     
     // MARK: - Filter Delegate

@@ -239,10 +239,10 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cce-y6-cbJ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="cce-y6-cbJ">
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" id="1Xa-zA-mZ7"/>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" id="FF9-52-qdC"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="21" id="FF9-52-qdC"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -255,7 +255,7 @@
                                                         <constraint firstAttribute="width" constant="16" id="uOf-Sm-lBm"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7NJ-9X-HEm">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7NJ-9X-HEm">
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" id="2U3-Jq-mJx"/>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" id="qep-44-vQ2"/>
@@ -625,10 +625,39 @@
                                     <action selector="doneButtonTapped:" destination="Xld-lq-bkU" eventType="touchUpInside" id="ZBV-iU-13r"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Just one more thing." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jaq-ta-p6T">
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" id="OtG-ie-t7H"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="44"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8NV-B9-vfz">
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" id="Cxc-OZ-YXO"/>
+                                </constraints>
+                                <attributedString key="attributedText">
+                                    <fragment content="Restaurants uses your location to help you find the best places in town. When you are ready, tap the button below to accept.">
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="17"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Jaq-ta-p6T" secondAttribute="trailing" constant="42" id="0Aq-Xf-moj"/>
+                            <constraint firstItem="Jaq-ta-p6T" firstAttribute="leading" secondItem="kQW-Bj-OPx" secondAttribute="leading" constant="42" id="1tx-X2-ds1"/>
                             <constraint firstItem="gSa-Y0-QAA" firstAttribute="leading" secondItem="kQW-Bj-OPx" secondAttribute="leading" constant="40" id="7Bx-rB-wY5"/>
+                            <constraint firstAttribute="trailing" secondItem="8NV-B9-vfz" secondAttribute="trailing" constant="42" id="A0O-BS-dSu"/>
+                            <constraint firstItem="gSa-Y0-QAA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="8NV-B9-vfz" secondAttribute="bottom" constant="16" id="A9S-XA-IWc"/>
+                            <constraint firstItem="8NV-B9-vfz" firstAttribute="top" secondItem="Jaq-ta-p6T" secondAttribute="bottom" constant="16" id="WaL-io-vg3"/>
+                            <constraint firstItem="8NV-B9-vfz" firstAttribute="leading" secondItem="kQW-Bj-OPx" secondAttribute="leading" constant="42" id="YMQ-RQ-Xlg"/>
+                            <constraint firstItem="Jaq-ta-p6T" firstAttribute="top" secondItem="NH6-pY-Aew" secondAttribute="bottom" constant="62" id="dqY-7H-fxn"/>
                             <constraint firstAttribute="trailing" secondItem="gSa-Y0-QAA" secondAttribute="trailing" constant="40" id="e4G-9h-c9X"/>
                             <constraint firstItem="7Pu-HW-UL6" firstAttribute="top" secondItem="gSa-Y0-QAA" secondAttribute="bottom" constant="24" id="pVE-b7-y4f"/>
                         </constraints>

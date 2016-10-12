@@ -39,23 +39,23 @@ class InitialState {
     // Simulating an array of JSON objects
     static let featuredSections: [[String: Any]] = [
         [
-            "title": "Best of Toronto",
-            "detail": "Top Pizza Places",
+            "title": "Burgers in Toronto",
+            "detail": "Hottest Burgers",
             "color": 0xEC4280,
             "location": "Toronto",
             "category": [
-                "alias": "pizza",
-                "title": "Pizza"
+                "alias": "hamburger",
+                "title": "Hamburgers"
             ]
         ],
         [
-            "title": "Burgers in New York",
-            "detail": "Hottest Burgers",
+            "title": "Pizza in New York",
+            "detail": "Top Pizza Places",
             "color": 0x1D62F0,
             "location": "New York",
             "category": [
-                "alias": "hamburger",
-                "title": "Hamburgers"
+                "alias": "pizza",
+                "title": "Pizza"
             ]
         ]
     ]
